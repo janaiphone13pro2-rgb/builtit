@@ -234,6 +234,73 @@ button {
   gap: 26px;
   align-items: center;
   padding: 42px 10px 42px;
+  position: relative;
+  cursor: none;
+}
+
+.cursor-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  margin-left: -24px;
+  margin-top: -24px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 232, 122, 0.4);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease, transform 0ms linear, width 200ms ease, height 200ms ease, margin 200ms ease, border-width 200ms ease;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0, 232, 122, 0.15);
+}
+
+.cursor-ring.visible {
+  opacity: 1;
+}
+
+.cursor-ring.hovering {
+  width: 64px;
+  height: 64px;
+  margin-left: -32px;
+  margin-top: -32px;
+  border-width: 2px;
+  border-color: rgba(0, 232, 122, 0.8);
+  box-shadow: 0 0 30px rgba(0, 232, 122, 0.3);
+}
+
+.cursor-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 300ms ease, transform 0ms linear, width 200ms ease, height 200ms ease, margin 200ms ease;
+  z-index: 1001;
+  box-shadow: 0 0 10px rgba(0, 232, 122, 0.6);
+}
+
+.cursor-dot.visible {
+  opacity: 1;
+}
+
+.cursor-dot.hovering {
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  box-shadow: 0 0 20px rgba(0, 232, 122, 0.8);
+}
+
+.hero-grid .hero-copy a,
+.hero-grid .hero-copy button {
+  cursor: none;
 }
 
 .main-content > .hero-grid {
@@ -1379,5 +1446,470 @@ button {
 
   .portfolio-stage-card-bottom {
     bottom: 22px;
+  }
+}
+
+/* Intro Animation Styles */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  background: var(--black);
+  overflow: hidden;
+}
+
+.intro-overlay.exit {
+  animation: introFadeOut 800ms ease forwards;
+  pointer-events: none;
+}
+
+@keyframes introFadeOut {
+  to {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+.intro-glow {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 600px;
+  height: 600px;
+  margin: -300px 0 0 -300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 232, 122, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+.intro-overlay.enter .intro-glow,
+.intro-overlay.reveal .intro-glow {
+  opacity: 1;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.5; }
+}
+
+.intro-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 232, 122, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 232, 122, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  opacity: 0;
+  animation: gridFadeIn 1s ease forwards;
+}
+
+.intro-overlay.enter .intro-grid,
+.intro-overlay.reveal .intro-grid {
+  opacity: 0.5;
+}
+
+@keyframes gridFadeIn {
+  from { opacity: 0; transform: scale(1.1); }
+  to { opacity: 0.5; transform: scale(1); }
+}
+
+.intro-content {
+  display: grid;
+  gap: 24px;
+  text-align: center;
+  z-index: 2;
+}
+
+.intro-logo {
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.intro-logo .logo-built {
+  display: inline-block;
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 0.6s ease forwards;
+}
+
+.intro-logo .logo-it {
+  display: inline-block;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 0.6s ease 0.1s forwards;
+}
+
+.intro-logo .logo-dot {
+  display: inline-block;
+  color: var(--accent);
+  opacity: 0;
+  animation: dotPop 0.4s ease 0.4s forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dotPop {
+  0% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1.3); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.intro-tagline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 500;
+  color: var(--grey);
+}
+
+.tagline-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(8px);
+}
+
+.intro-overlay.reveal .tagline-word:nth-child(1) {
+  animation: taglineReveal 0.5s ease 0.3s forwards;
+}
+
+.intro-overlay.reveal .tagline-word:nth-child(2) {
+  animation: taglineReveal 0.5s ease 0.4s forwards;
+}
+
+.intro-overlay.reveal .tagline-word:nth-child(3) {
+  animation: taglineReveal 0.5s ease 0.5s forwards;
+}
+
+.intro-overlay.reveal .tagline-word:nth-child(4) {
+  animation: taglineReveal 0.5s ease 0.6s forwards;
+}
+
+.tagline-word.accent {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+@keyframes taglineReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.intro-progress {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.intro-overlay.enter .intro-progress,
+.intro-overlay.reveal .intro-progress {
+  opacity: 1;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: progressFill 2s ease-out forwards;
+}
+
+.progress-glow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0;
+  background: var(--accent);
+  border-radius: 50%;
+  filter: blur(10px);
+  animation: progressGlow 2s ease-out forwards;
+}
+
+@keyframes progressFill {
+  to { width: 100%; }
+}
+
+@keyframes progressGlow {
+  to { left: 100%; }
+}
+
+.intro-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 4px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.intro-overlay.enter .particle,
+.intro-overlay.reveal .particle {
+  animation: particleFloat 3s ease-in-out var(--delay) infinite;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  10% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateY(-40px) scale(1);
+  }
+  90% {
+    opacity: 0;
+  }
+}
+
+/* Hide scroll during intro */
+body:has(.intro-overlay) {
+  overflow: hidden;
+}
+
+/* Showcase Section - Scroll-Driven Horizontal Slider */
+.showcase-section {
+  background: #000;
+  padding: 60px 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.showcase-header {
+  text-align: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.showcase-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin: 0 0 12px;
+  line-height: 1.1;
+}
+
+.showcase-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.showcase-subtitle {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  margin: 0;
+}
+
+.floating-dot {
+  position: absolute;
+  top: 10px;
+  right: 25%;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: floatDot 3s ease-in-out infinite;
+  box-shadow: 0 0 12px var(--accent);
+}
+
+@keyframes floatDot {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-12px) scale(1.1); }
+}
+
+/* Scroll-Driven Horizontal Slider */
+.horizontal-scroll-section {
+  position: relative;
+  height: 500px; /* Taller for more scroll control */
+  width: 100%;
+  overflow: hidden;
+}
+
+.horizontal-scroll-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  height: 160px;
+  overflow: visible;
+}
+
+.horizontal-scroll-track {
+  display: flex;
+  gap: 16px;
+  height: 100%;
+  align-items: center;
+  padding-left: calc(50vw - 90px);
+  will-change: transform;
+}
+
+/* Small Slide Cards - Much Smaller */
+.scroll-slide {
+  flex-shrink: 0;
+  width: 180px;
+  height: 130px;
+  transition: all 0.3s ease;
+}
+
+.scroll-slide-card {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.scroll-slide-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.scroll-slide-label {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Progress Bar */
+.scroll-progress {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.scroll-hint svg {
+  animation: bounceArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .horizontal-scroll-section {
+    height: 400px;
+  }
+  
+  .horizontal-scroll-wrapper {
+    height: 140px;
+  }
+  
+  .scroll-slide {
+    width: 160px;
+    height: 115px;
+  }
+  
+  .scroll-slide-label {
+    font-size: 0.6rem;
+    padding: 3px 6px;
+  }
+  
+  .floating-dot {
+    right: 15%;
+  }
+}
+
+@media (max-width: 480px) {
+  .horizontal-scroll-section {
+    height: 350px;
+  }
+  
+  .horizontal-scroll-wrapper {
+    height: 120px;
+  }
+  
+  .scroll-slide {
+    width: 140px;
+    height: 100px;
+  }
+  
+  .scroll-progress {
+    width: 120px;
   }
 }

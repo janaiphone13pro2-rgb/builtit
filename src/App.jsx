@@ -1,5 +1,134 @@
 import { useEffect, useRef, useState } from "react";
 
+function CustomCursor() {
+  const cursorRef = useRef(null);
+  const ringRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
+  const posRef = useRef({ x: 0, y: 0 });
+  const targetRef = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const hero = document.querySelector('.hero-grid');
+    if (!hero) return;
+
+    const handleMouseMove = (e) => {
+      const rect = hero.getBoundingClientRect();
+      targetRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      };
+    };
+
+    const handleMouseEnter = () => setIsVisible(true);
+    const handleMouseLeave = () => setIsVisible(false);
+
+    const handleElementHover = (e) => {
+      const target = e.target;
+      const isInteractive = target.closest('a, button, .dashboard-card');
+      setIsHovering(!!isInteractive);
+    };
+
+    hero.addEventListener('mousemove', handleMouseMove);
+    hero.addEventListener('mouseenter', handleMouseEnter);
+    hero.addEventListener('mouseleave', handleMouseLeave);
+    hero.addEventListener('mouseover', handleElementHover);
+
+    let rafId;
+    const animate = () => {
+      posRef.current.x += (targetRef.current.x - posRef.current.x) * 0.15;
+      posRef.current.y += (targetRef.current.y - posRef.current.y) * 0.15;
+
+      if (cursorRef.current) {
+        cursorRef.current.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px)`;
+      }
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate(${targetRef.current.x}px, ${targetRef.current.y}px)`;
+      }
+
+      rafId = requestAnimationFrame(animate);
+    };
+    rafId = requestAnimationFrame(animate);
+
+    return () => {
+      hero.removeEventListener('mousemove', handleMouseMove);
+      hero.removeEventListener('mouseenter', handleMouseEnter);
+      hero.removeEventListener('mouseleave', handleMouseLeave);
+      hero.removeEventListener('mouseover', handleElementHover);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  return (
+    <>
+      <div
+        ref={ringRef}
+        className={`cursor-ring ${isVisible ? 'visible' : ''} ${isHovering ? 'hovering' : ''}`}
+      />
+      <div
+        ref={cursorRef}
+        className={`cursor-dot ${isVisible ? 'visible' : ''} ${isHovering ? 'hovering' : ''}`}
+      />
+    </>
+  );
+}
+
+function IntroAnimation({ onComplete }) {
+  const [phase, setPhase] = useState('enter');
+
+  useEffect(() => {
+    const timeouts = [
+      setTimeout(() => setPhase('enter'), 0),
+      setTimeout(() => setPhase('reveal'), 800),
+      setTimeout(() => setPhase('exit'), 2200),
+      setTimeout(() => onComplete?.(), 3000)
+    ];
+
+    return () => timeouts.forEach(clearTimeout);
+  }, [onComplete]);
+
+  return (
+    <div className={`intro-overlay ${phase}`} aria-hidden={phase === 'exit'}>
+      <div className="intro-glow" />
+      <div className="intro-grid" />
+
+      <div className="intro-content">
+        <div className="intro-logo">
+          <span className="logo-built">Built</span>
+          <span className="logo-it">It</span>
+          <span className="logo-dot">.</span>
+        </div>
+
+        <div className="intro-tagline">
+          <span className="tagline-word">Own</span>
+          <span className="tagline-word">Your</span>
+          <span className="tagline-word">Digital</span>
+          <span className="tagline-word accent">Future</span>
+        </div>
+      </div>
+
+      <div className="intro-progress">
+        <div className="progress-bar" />
+        <div className="progress-glow" />
+      </div>
+
+      <div className="intro-particles">
+        {[...Array(12)].map((_, i) => (
+          <div
+            key={i}
+            className="particle"
+            style={{
+              '--delay': `${i * 0.15}s`,
+              '--x': `${20 + Math.random() * 60}%`,
+              '--y': `${20 + Math.random() * 60}%`
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const navLinks = [
   { label: "Portfolio", href: "/portfolio.html" },
   { label: "How it works", href: "#how-it-works" },
@@ -102,33 +231,33 @@ const pricingPlans = [
 const testimonials = [
   {
     quote:
-      "BuiltIt. delivered my store in 18 hours. I own everything, and I've already saved EGP 15k in monthly fees.",
-    name: "Ahmed E.",
-    role: "Founder, Online Retailer",
-    initials: "AE",
+      "BuiltIt. delivered my store in 18 hours. I own everything, and I've already saved EGP 1.5k in monthly fees.",
+    name: "Local Brand Owner",
+    role: "With Lydia Market",
+    initials: "LM",
+  },
+  {
+    quote:
+      "Simply the best investment I've made for my business. Pure ownership and very supportive onboarding.",
+    name: "Local Brand Owner",
+    role: "With Doaa El Farouk bazzar ",
+    initials: "DE",
   },
   {
     quote:
       "The speed of execution is unmatched. The code is clean, the design is premium, and I never have to pay a subscription again.",
-    name: "Nene Y.",
-    role: "CEO, Tech Firm",
-    initials: "NY",
-  },
-  {
-    quote:
-      "Simply the best investment I've made for my business. Pure ownership is a superpower in 2024.",
-    name: "Samer G.",
-    role: "Director, Tech Firm",
-    initials: "SG",
+    name: "Hekaya Korean Reseller",
+    role: "Brand",
+    initials: "HK",
   },
 ];
 
 const footerLinks = [
   { label: "Portfolio", href: "/portfolio.html" },
-  { label: "Instagram", href: "#top" },
+  { label: "Instagram", href: "https://www.instagram.com/builtit_eg?igsh=MXhnMDI4OTF2eHJ1ZQ==" },
   { label: "Twitter", href: "#top" },
   { label: "LinkedIn", href: "#top" },
-  { label: "Contact", href: "#top" },
+  { label: "WhatsApp", href: "https://wa.me/201284744633" },
   { label: "Privacy", href: "#top" },
 ];
 
@@ -266,6 +395,7 @@ function CountUpStat({ value, suffix }) {
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [introDone, setIntroDone] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -302,7 +432,7 @@ function App() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [introDone]);
 
   useEffect(() => {
     const closeMenu = () => setMobileOpen(false);
@@ -316,7 +446,9 @@ function App() {
   };
 
   return (
-    <div className="page">
+    <>
+      {!introDone && <IntroAnimation onComplete={() => setIntroDone(true)} />}
+      <div className="page">
       <header className={`site-header ${isScrolled ? "is-scrolled" : ""}`}>
         <a className="logo" href="#top">
           <Logo />
@@ -349,6 +481,7 @@ function App() {
 
       <main className="main-content" id="top">
         <section className="hero-grid" data-reveal>
+          <CustomCursor />
           <div className="hero-copy">
             <p className="section-label">THE OBSIDIAN ARCHITECT</p>
             <h1 className="hero-title">
@@ -583,7 +716,7 @@ function App() {
             Stop paying for permission to run your business. Join 200+ founders
             who own their digital future with BuiltIt.
           </p>
-          <a className="button button-primary final-cta-button" href="#pricing">
+          <a className="button button-primary final-cta-button" href="https://wa.me/201284744633" target="_blank" rel="noopener noreferrer">
             Launch My Business
           </a>
         </section>
@@ -597,7 +730,12 @@ function App() {
 
           <nav className="footer-nav">
             {footerLinks.map((link) => (
-              <a href={link.href} key={link.label}>
+              <a 
+                href={link.href} 
+                key={link.label}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
                 {link.label}
               </a>
             ))}
@@ -612,6 +750,7 @@ function App() {
         </p>
       </footer>
     </div>
+    </>
   );
 }
 
