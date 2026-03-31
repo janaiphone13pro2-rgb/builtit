@@ -1,31 +1,53 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import "./showcase.css";
+import { ZekryWayShowcase } from "./ZekryWayShowcase";
 
 const projects = [
   {
-    number: "001 / E-Commerce",
-    clientLabel: "Client Name",
-    clientName: "Fashion Retailer — Cairo",
+    number: "001 / Dashboard",
+    title: "Feel Free to Control Your Website",
+    clientLabel: "Why It Matters",
+    clientName: "Everything Is Customizable",
     description:
-      "Detailed outcome description illustrating the technical architecture and business impact achieved through our precision engineering process. Zero subscriptions, full ownership at handover.",
-    tags: ["Next.js", "Supabase", "Stripe", "SEO"],
+      "Control every picture and section on your website directly from your mobile with a very friendly dashboard built for fast, simple updates.",
+    tags: [
+      "Mobile Control",
+      "Image Updates",
+      "Custom Sections",
+      "Friendly Dashboard",
+    ],
+    image: "/image.png",
+    imageAlt: "Builtit admin dashboard settings",
+    previewLabel: "Admin Dashboard",
+    ctaLabel: "Explore Feature",
     reverse: false,
   },
   {
-    number: "002 / Enterprise",
-    clientLabel: "Client Name",
-    clientName: "B2B Platform — Dubai",
+    number: "002 / Orders",
+    title: "Track Every Order Status",
+    clientLabel: "What You Can Do",
+    clientName: "WhatsApp Updates, Shipping, and Printing",
     description:
-      "Strategic integration of headless frameworks to maximise conversion rates and operational efficiency for high-value enterprise clients. Full source control delivered at handover.",
-    tags: ["Headless CMS", "Multi-vendor", "API-first"],
+      "Track all your order statuses, send your clients WhatsApp updates from one button, keep them up to date with their order status, link your shipping company, and print the airway bill with one click.",
+    tags: ["Order Tracking", "WhatsApp", "Shipping Link", "Airway Bill"],
+    image: "/image2.png",
+    imageAlt: "Builtit orders dashboard with status controls",
+    previewLabel: "Orders Dashboard",
+    ctaLabel: "Explore Feature",
     reverse: true,
   },
   {
-    number: "003 / D2C Brand",
-    clientLabel: "Client Name",
-    clientName: "D2C Beauty Brand — Alexandria",
+    number: "003 / Analytics",
+    title: "Real-Time Analytics",
+    clientLabel: "What You Get",
+    clientName: "Live Users and Full Features",
     description:
-      "Zero-to-revenue in 24 hours. Full stack e-commerce with inventory management, order tracking, and a custom CMS — all owned outright by the client, no vendor lock-in.",
-    tags: ["D2C", "Custom CMS", "Payments", "Analytics"],
+      "See real-time analytics, monitor how many users are live on your website, and access all features with no subscriptions.",
+    tags: ["Real-Time Analytics", "Live Users", "Full Features", "No Subscriptions"],
+    image: "/image3.png",
+    imageAlt: "Builtit analytics dashboard overview",
+    previewLabel: "Analytics Dashboard",
+    ctaLabel: "Explore Feature",
     reverse: false,
   },
 ];
@@ -65,10 +87,16 @@ const processSteps = [
 ];
 
 const footerLinks = [
-  "Privacy Policy",
-  "Terms of Service",
-  "LinkedIn",
-  "Instagram",
+  { label: "Privacy Policy", href: "#top" },
+  { label: "Terms of Service", href: "#top" },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/builtitnet/posts/?feedView=all",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/builtit_eg?igsh=MXhnMDI4OTF2eHJ1ZQ==",
+  },
 ];
 
 function ArrowIcon() {
@@ -93,22 +121,33 @@ function Logo() {
   );
 }
 
-function formatRevenue(value) {
-  const safeValue = Math.min(value, 42.8);
-  const whole = Math.floor(safeValue);
-  const decimal = Math.min(8, Math.floor((safeValue - whole) * 10));
+function HorizontalSlider() {
+  const slides = [
+    { src: '/photo1.png', alt: 'Dashboard', label: 'Dashboard' },
+    { src: '/photo2.png', alt: 'Products', label: 'Products' },
+    { src: '/photo3.png', alt: 'Orders', label: 'Orders' }
+  ];
 
-  if (safeValue >= 42.8) {
-    return {
-      prefix: "EGP 42",
-      suffix: ".8M+",
-    };
-  }
-
-  return {
-    prefix: `EGP ${whole}`,
-    suffix: `.${decimal}M+`,
-  };
+  return (
+    <>
+      <div className="showcase-gallery">
+        {slides.map((slide, index) => (
+          <div key={index} className="gallery-item">
+            <div className="gallery-card">
+              <img src={slide.src} alt={slide.alt} />
+              <div className="gallery-label">{slide.label}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="gallery-hint">
+        <span>Swipe or drag to explore</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </div>
+    </>
+  );
 }
 
 function PortfolioPage() {
@@ -116,9 +155,9 @@ function PortfolioPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [countersStarted, setCountersStarted] = useState(false);
   const [counters, setCounters] = useState({
-    revenue: 0,
-    speed: 0,
-    seo: 0,
+    brands: 0,
+    roi: 0,
+    support: 0,
   });
 
   useEffect(() => {
@@ -184,18 +223,18 @@ function PortfolioPage() {
       const eased = 1 - Math.pow(1 - progress, 3);
 
       setCounters({
-        revenue: 42.8 * eased,
-        speed: 0.4 * eased,
-        seo: 100 * eased,
+        brands: 25 * eased,
+        roi: 200 * eased,
+        support: 24 * eased,
       });
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(tick);
       } else {
         setCounters({
-          revenue: 42.8,
-          speed: 0.4,
-          seo: 100,
+          brands: 25,
+          roi: 200,
+          support: 24,
         });
       }
     };
@@ -205,13 +244,9 @@ function PortfolioPage() {
     return () => cancelAnimationFrame(animationFrame);
   }, [countersStarted]);
 
-  const revenueDisplay = useMemo(
-    () => formatRevenue(counters.revenue),
-    [counters.revenue]
-  );
-
-  const speedDigit = Math.min(4, Math.floor(counters.speed * 10));
-  const seoValue = Math.min(100, Math.floor(counters.seo));
+  const brandsValue = Math.min(25, Math.floor(counters.brands));
+  const roiValue = Math.min(200, Math.floor(counters.roi));
+  const supportValue = Math.min(24, Math.floor(counters.support));
 
   return (
     <div className="portfolio-react">
@@ -320,45 +355,48 @@ function PortfolioPage() {
         </div>
       </section>
 
+      <ZekryWayShowcase />
+
       <div className="metrics-bar" ref={metricsRef}>
         <div className="metric fade-up">
-          <div className="metric-label-top">Volume Growth</div>
+          <div className="metric-label-top">Brands Working With Us</div>
           <div className="metric-value">
-            {revenueDisplay.prefix}
-            <span>{revenueDisplay.suffix}</span>
+            +{brandsValue}
+            <span>+</span>
           </div>
-          <div className="metric-desc">Generated for partners</div>
+          <div className="metric-desc">Brands already working with us</div>
         </div>
         <div className="metric fade-up delay-1">
-          <div className="metric-label-top">Performance Floor</div>
+          <div className="metric-label-top">ROI Delivered</div>
           <div className="metric-value">
-            0<span>.{speedDigit}s</span>
+            +{roiValue}
+            <span>K</span>
           </div>
-          <div className="metric-desc">Avg. load time (LCP)</div>
+          <div className="metric-desc">Made more than 200k ROI</div>
         </div>
         <div className="metric fade-up delay-2">
-          <div className="metric-label-top">Authority Index</div>
+          <div className="metric-label-top">Unlimited Support</div>
           <div className="metric-value">
-            {seoValue}
-            <span>%</span>
+            {supportValue}
+            <span>/7</span>
           </div>
-          <div className="metric-desc">Lighthouse SEO score</div>
+          <div className="metric-desc">24/7 unlimited support</div>
         </div>
       </div>
 
       <section id="case-studies">
         <div className="case-studies-header">
           <div>
-            <p className="section-label">Case Studies</p>
+            <p className="section-label">Features</p>
             <h2 className="section-title">
-              Engineered
+              That Will Change
               <br />
-              Success Stories<span className="accent">.</span>
+              Your Brand<span className="accent">.</span>
             </h2>
           </div>
           <p className="case-studies-desc">
-            A selection of high-performance infrastructures built for brands who
-            demand zero compromise.
+            A set of high-impact features designed to elevate perception,
+            strengthen trust, and move your brand forward.
           </p>
         </div>
 
@@ -369,14 +407,25 @@ function PortfolioPage() {
             }`}
             key={project.number}
           >
-            <div className="project-preview">
-              <span className="project-preview-label">Project Preview</span>
+            <div
+              className={`project-preview${project.image ? " has-image" : ""}`}
+            >
+              {project.image ? (
+                <img
+                  className="project-preview-image"
+                  src={project.image}
+                  alt={project.imageAlt || project.title}
+                />
+              ) : null}
+              <span className="project-preview-label">
+                {project.previewLabel || "Project Preview"}
+              </span>
             </div>
 
             <div className="project-info">
               <div>
                 <div className="project-number">{project.number}</div>
-                <div className="project-title">Project Title</div>
+                <div className="project-title">{project.title}</div>
               </div>
               <div>
                 <div className="project-client-label">{project.clientLabel}</div>
@@ -391,7 +440,7 @@ function PortfolioPage() {
                 ))}
               </div>
               <a href="#commission" className="project-link">
-                View Case Study
+                {project.ctaLabel || "View Feature"}
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path
                     d="M2 6h8M6 2l4 4-4 4"
@@ -457,13 +506,18 @@ function PortfolioPage() {
         <h2 className="section-title fade-up">
           Commission Your
           <br />
-          Masterpiece<span className="accent">.</span>
+          <span className="accent">Masterpiece</span><span className="accent">.</span>
         </h2>
         <p className="cta-sub fade-up delay-1">
           No Subscriptions. Just Engineering. Secure your Q4 development slot
           before the window closes.
         </p>
-        <a href="mailto:hello@buillt.io" className="btn-cta fade-up delay-2">
+        <a
+          href="https://wa.me/201284744633"
+          target="_blank"
+          rel="noreferrer"
+          className="btn-cta fade-up delay-2"
+        >
           <span>Initiate Protocol</span>
           <span className="lightning">⚡</span>
         </a>
@@ -475,8 +529,14 @@ function PortfolioPage() {
         </a>
         <ul className="footer-links">
           {footerLinks.map((link) => (
-            <li key={link}>
-              <a href="#top">{link}</a>
+            <li key={link.label}>
+              <a
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+              >
+                {link.label}
+              </a>
             </li>
           ))}
         </ul>

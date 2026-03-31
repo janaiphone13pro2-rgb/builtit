@@ -1,0 +1,225 @@
+.zekryway-showcase {
+  position: relative;
+  height: 250vh;
+  width: 100%;
+  padding: 0 !important;
+  overflow: visible;
+  background: #080808;
+}
+
+.zekryway-showcase__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.zekryway-showcase__ring {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.zekryway-showcase__copy {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.zekryway-showcase__heading,
+.zekryway-showcase__subtitle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.zekryway-showcase__heading {
+  margin: 0 0 20px;
+  gap: 0 0.7rem;
+  color: #ffffff;
+  font-family: "Space Grotesk", "Inter", sans-serif !important;
+  font-size: clamp(3.75rem, 9vw, 8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.zekryway-showcase__subtitle {
+  margin: 0;
+  max-width: min(760px, calc(100vw - 48px));
+  gap: 0.1rem 0.55rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: "Space Grotesk", "Inter", sans-serif !important;
+  font-size: clamp(1.05rem, 1.2vw, 1.85rem);
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.zekryway-showcase__word,
+.zekryway-showcase__subtitle-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px) rotateX(90deg);
+  transform-origin: bottom center;
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.zekryway-showcase__word--italic {
+  font-style: italic;
+}
+
+.zekryway-showcase.is-visible .zekryway-showcase__word,
+.zekryway-showcase.is-visible .zekryway-showcase__subtitle-word {
+  opacity: 1;
+  transform: translateY(0) rotateX(0deg);
+}
+
+.zekryway-showcase__track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 4vw, 64px);
+  width: max-content;
+  padding: 0 32px;
+  will-change: transform, opacity;
+}
+
+.zekryway-showcase__slide {
+  position: relative;
+  flex: 0 0 auto;
+  width: 90vw;
+  height: 35vh;
+}
+
+.zekryway-showcase__viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.zekryway-showcase__card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+}
+
+.zekryway-showcase__card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  color: transparent;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.zekryway-showcase__card-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+.zekryway-showcase__fade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 8, 8, 0) 0%,
+      rgba(8, 8, 8, 0) 56%,
+      rgba(8, 8, 8, 0.84) 100%
+    );
+}
+
+@media (min-width: 768px) {
+  .zekryway-showcase__slide {
+    width: 60vw;
+    height: 60vh;
+  }
+
+  .zekryway-showcase__card img {
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 900px) {
+  .zekryway-showcase__ring {
+    top: 40px;
+    right: 30px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .zekryway-showcase__heading {
+    gap: 0 0.45rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .zekryway-showcase {
+    height: 220vh;
+  }
+
+  .zekryway-showcase__copy {
+    padding: 20px;
+  }
+
+  .zekryway-showcase__heading {
+    margin-bottom: 16px;
+    font-size: clamp(3rem, 13vw, 4.75rem);
+  }
+
+  .zekryway-showcase__subtitle {
+    max-width: 330px;
+    font-size: 1rem;
+    gap: 0.08rem 0.4rem;
+  }
+
+  .zekryway-showcase__track {
+    gap: 32px;
+    padding: 0 16px;
+  }
+
+  .zekryway-showcase__card {
+    border-radius: 18px;
+  }
+
+  .zekryway-showcase__card-ring {
+    border-radius: 18px;
+  }
+}
