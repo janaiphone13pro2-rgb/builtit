@@ -21,7 +21,7 @@ const showcaseSlides = [
 
 const titleWords = [
   { text: "View", italic: false },
-  { text: "our", italic: true },
+  { text: "our", italic: false },
   { text: "dashboard", italic: false },
 ];
 
