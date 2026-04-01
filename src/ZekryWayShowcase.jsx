@@ -20,9 +20,9 @@ const showcaseSlides = [
 ];
 
 const titleWords = [
-  { text: "See", italic: false },
-  { text: "It", italic: true },
-  { text: "in", italic: false },
+  { text: "View", italic: false },
+  { text: "our", italic: true },
+  { text: "dashboard", italic: false },
 ];
 
 const subtitleWords = [
