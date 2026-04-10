@@ -131,9 +131,9 @@ function IntroAnimation({ onComplete }) {
 
 const navLinks = [
   { label: "Portfolio", href: "/portfolio.html" },
-  { label: "How it works", href: "#how-it-works" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "How it works", href: "#how-it-works", section: "how-it-works" },
+  { label: "Pricing", href: "#pricing", section: "pricing" },
+  { label: "Testimonials", href: "#testimonials", section: "testimonials" },
 ];
 
 const comparisonRows = [
@@ -143,7 +143,7 @@ const comparisonRows = [
     icon: "cross",
     items: [
       { label: "Monthly Subscription", value: "EGP 1,500+/mo" },
-      { label: "Transaction Fees", value: "2.5% + EGP 10" },
+      { label: "Delivery Day", value: "1-2 Weeks" },
       { label: "Data Ownership", value: "Vendor Lock-In" },
     ],
     total: 54000,
@@ -155,11 +155,11 @@ const comparisonRows = [
     theme: "positive",
     icon: "check",
     items: [
-      { label: "One-Time Payment", value: "from EGP 6,500" },
-      { label: "Transaction Fees", value: "0% Fees" },
+      { label: "One-Time Payment", value: "EGP 7,500" },
+      { label: "Delivery Day", value: "One Day" },
       { label: "Data Ownership", value: "100% Yours" },
     ],
-    total: 6500,
+    total: 7500,
     totalLabel: "3-Year Cost",
     suffix: "",
   },
@@ -185,6 +185,27 @@ const featureCards = [
     title: "MENA-Cloud Ready",
     copy: "Optimised for regional scale. Seamless integration with local payment gateways and low-latency cloud infrastructure.",
     icon: "mena",
+  },
+];
+
+const serviceShowcaseCards = [
+  {
+    title: "E-Commerce Websites",
+    copy: "Full online store with analytics, admin & product pages.",
+    icon: "commerce",
+    featured: true,
+  },
+  {
+    title: "Landing Pages",
+    copy: "One-page business site. Services, contact, brand story.",
+    icon: "landing",
+    featured: false,
+  },
+  {
+    title: "Personal Portfolios",
+    copy: "Showcase your work. Build your brand. Influence that lasts.",
+    icon: "portfolio",
+    featured: false,
   },
 ];
 
@@ -270,10 +291,10 @@ function Logo() {
   );
 }
 
-function Icon({ type }) {
+function Icon({ type, size = 22 }) {
   const common = {
-    width: 22,
-    height: 22,
+    width: size,
+    height: size,
     viewBox: "0 0 24 24",
     fill: "none",
     stroke: "currentColor",
@@ -327,6 +348,35 @@ function Icon({ type }) {
         <svg {...common}>
           <path d="M12 3c4.8 0 8.5 3.9 8.5 8.8 0 6-8.5 9.9-8.5 9.9S3.5 17.8 3.5 11.8C3.5 6.9 7.2 3 12 3Z" />
           <circle cx="12" cy="11.5" r="2.8" />
+        </svg>
+      );
+    case "commerce":
+      return (
+        <svg {...common}>
+          <path d="M3.5 5.5H6l1.7 8.1a1 1 0 0 0 1 .8h8.5a1 1 0 0 0 1-.8l1.3-5.8H7.2" />
+          <path d="M9 5.5V3.5h10.5" />
+          <circle cx="10.2" cy="18.4" r="1.4" />
+          <circle cx="16.8" cy="18.4" r="1.4" />
+        </svg>
+      );
+    case "landing":
+      return (
+        <svg {...common}>
+          <rect x="3.5" y="4.5" width="17" height="14.5" rx="2.5" />
+          <rect x="6.5" y="7.5" width="4.6" height="5.4" rx="1" />
+          <path d="M13.7 8.2H17.8" />
+          <path d="M13.7 11.1H17.8" />
+          <path d="M6.5 15.8H17.8" />
+        </svg>
+      );
+    case "portfolio":
+      return (
+        <svg {...common}>
+          <path d="M7.2 7.4h10.6a2.2 2.2 0 0 1 2.2 2.2v7a2.2 2.2 0 0 1-2.2 2.2H7.2A2.2 2.2 0 0 1 5 16.6v-7a2.2 2.2 0 0 1 2.2-2.2Z" />
+          <path d="M8.8 4.7h8a2.2 2.2 0 0 1 2.2 2.2" />
+          <path d="M10.8 2.2h5.8a2.2 2.2 0 0 1 2.2 2.2" />
+          <path d="M8.3 12h4.2" />
+          <path d="M8.3 15.2h2.8" />
         </svg>
       );
     default:
@@ -395,17 +445,40 @@ function CountUpStat({ value, suffix }) {
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
   const [introDone, setIntroDone] = useState(false);
 
   useEffect(() => {
+    const trackedSections = ["testimonials", "pricing", "how-it-works"];
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 16);
+
+      const marker = window.scrollY + 180;
+      let nextActive = null;
+
+      for (const sectionId of trackedSections) {
+        const section = document.getElementById(sectionId);
+
+        if (section && marker >= section.offsetTop) {
+          nextActive = sectionId;
+          break;
+        }
+      }
+
+      setActiveSection((current) =>
+        current === nextActive ? current : nextActive
+      );
     };
 
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -441,8 +514,9 @@ function App() {
     return () => window.removeEventListener("resize", closeMenu);
   }, []);
 
-  const handleNavClick = () => {
+  const handleNavClick = (section) => {
     setMobileOpen(false);
+    setActiveSection(section ?? null);
   };
 
   return (
@@ -468,13 +542,18 @@ function App() {
 
         <nav className={`site-nav ${mobileOpen ? "is-open" : ""}`}>
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} onClick={handleNavClick}>
+            <a
+              key={link.href}
+              href={link.href}
+              className={activeSection === link.section ? "active" : undefined}
+              onClick={() => handleNavClick(link.section)}
+            >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <a className="nav-cta" href="#pricing" onClick={handleNavClick}>
+        <a className="nav-cta" href="#pricing" onClick={() => handleNavClick("pricing")}>
           Get Started
         </a>
       </header>
@@ -550,6 +629,48 @@ function App() {
               </div>
             </div>
           </aside>
+        </section>
+
+        <section className="content-section service-showcase-section" data-reveal>
+          <div className="section-heading section-heading-split">
+            <div>
+              <p className="section-label">WHAT WE BUILD</p>
+              <h2>
+                Same services.
+                <br />
+                Better <span className="accent-text">presentation.</span>
+              </h2>
+            </div>
+            <p className="section-sidecopy">
+              The same offers from your reference, rebuilt as real React
+              components with cleaner spacing, stronger outlines, and a more
+              premium visual system.
+            </p>
+          </div>
+
+          <div
+            className="service-showcase-shell"
+            aria-label="BuiltIt service categories"
+          >
+            <div className="service-showcase-track" aria-hidden="true">
+              <span />
+              <span />
+            </div>
+
+            <div className="service-card-row">
+              {serviceShowcaseCards.map((service) => (
+                <article className="service-card" key={service.title}>
+                  <span className="service-card-icon">
+                    <Icon type={service.icon} size={34} />
+                  </span>
+                  <div className="service-card-copy">
+                    <h3>{service.title}</h3>
+                    <p>{service.copy}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="content-section" data-reveal>
@@ -644,7 +765,7 @@ function App() {
               <h2>
                 One Invoice.
                 <br />
-                Unlimited Potential.
+                <span className="accent-text">Unlimited Potential.</span>
               </h2>
             </div>
             <p className="section-sidecopy">

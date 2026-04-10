@@ -91,9 +91,20 @@ nav.scrolled {
   color: var(--white);
   text-decoration: none;
   letter-spacing: -0.08em;
+  display: inline-flex;
+  align-items: center;
 }
 
-.nav-logo span {
+.logo-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.logo-wordmark-main {
+  color: var(--white);
+}
+
+.logo-wordmark-accent {
   color: var(--accent);
 }
 
@@ -998,7 +1009,7 @@ section {
 .btn-cta {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0;
   background: rgba(0, 232, 122, 0.1);
   color: var(--accent);
   border: 1px solid rgba(0, 232, 122, 0.35);
@@ -1040,15 +1051,6 @@ section {
   transition: color 0.3s;
 }
 
-.lightning {
-  font-size: 1rem;
-  transition: transform 0.2s;
-}
-
-.btn-cta:hover .lightning {
-  transform: scale(1.2);
-}
-
 footer {
   padding: 32px 48px;
   border-top: 1px solid var(--card-border);
@@ -1065,10 +1067,8 @@ footer {
   font-size: var(--type-logo);
   color: var(--white);
   text-decoration: none;
-}
-
-.footer-logo span {
-  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
 }
 
 .footer-links {

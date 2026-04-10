@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./showcase.css";
 import { ZekryWayShowcase } from "./ZekryWayShowcase";
 
@@ -99,6 +99,12 @@ const footerLinks = [
   },
 ];
 
+const navItems = [
+  { label: "Portfolio", href: "#top", section: "top" },
+  { label: "Services", href: "#case-studies", section: "case-studies" },
+  { label: "Process", href: "#process", section: "process" },
+];
+
 function ArrowIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -115,9 +121,10 @@ function ArrowIcon() {
 
 function Logo() {
   return (
-    <>
-      Buillt<span>.</span>
-    </>
+    <span className="logo-wordmark" aria-label="BuiltIt.">
+      <span className="logo-wordmark-main">Built</span>
+      <span className="logo-wordmark-accent">It.</span>
+    </span>
   );
 }
 
@@ -153,6 +160,7 @@ function HorizontalSlider() {
 function PortfolioPage() {
   const metricsRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("top");
   const [countersStarted, setCountersStarted] = useState(false);
   const [counters, setCounters] = useState({
     brands: 0,
@@ -180,11 +188,36 @@ function PortfolioPage() {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 60);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    const trackedSections = ["process", "case-studies", "top"];
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 60);
+
+      const marker = window.scrollY + 180;
+      let nextActive = "top";
+
+      for (const sectionId of trackedSections) {
+        const section = document.getElementById(sectionId);
+
+        if (section && marker >= section.offsetTop) {
+          nextActive = sectionId;
+          break;
+        }
+      }
+
+      setActiveSection((current) =>
+        current === nextActive ? current : nextActive
+      );
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -256,17 +289,17 @@ function PortfolioPage() {
         </a>
 
         <ul className="nav-links">
-          <li>
-            <a href="#top" className="active">
-              Portfolio
-            </a>
-          </li>
-          <li>
-            <a href="#case-studies">Services</a>
-          </li>
-          <li>
-            <a href="#process">Process</a>
-          </li>
+          {navItems.map((item) => (
+            <li key={item.section}>
+              <a
+                href={item.href}
+                className={activeSection === item.section ? "active" : undefined}
+                onClick={() => setActiveSection(item.section)}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
         <a href="#commission" className="nav-cta">
@@ -276,13 +309,13 @@ function PortfolioPage() {
 
       <section className="hero" id="top">
         <div className="hero-content">
-          <p className="hero-label">Buillt. — Architectural Outcomes</p>
+          <p className="hero-label">BuiltIt. — Architectural Outcomes</p>
           <h1>
             <span className="hero-title-line hero-title-line--full">
               The Proof of
             </span>
             <span className="hero-title-line">
-              Concept<span className="accent">.</span>
+              <span className="accent">Concept.</span>
             </span>
           </h1>
           <p className="hero-sub">
@@ -307,7 +340,7 @@ function PortfolioPage() {
               <div className="mockup-dot" />
               <div className="mockup-dot" />
               <div className="mockup-dot" />
-              <div className="mockup-url">analytics.buillt.io/dashboard</div>
+              <div className="mockup-url">analytics.builtit.io/dashboard</div>
             </div>
 
             <div className="mockup-body">
@@ -519,7 +552,6 @@ function PortfolioPage() {
           className="btn-cta fade-up delay-2"
         >
           <span>Initiate Protocol</span>
-          <span className="lightning">⚡</span>
         </a>
       </section>
 
@@ -542,7 +574,7 @@ function PortfolioPage() {
         </ul>
         <div className="footer-secure">Verified Secure</div>
         <div className="footer-copy">
-          © 2025 Buillt. Global Architecture. All rights reserved. — Engineered
+          © 2025 BuiltIt. Global Architecture. All rights reserved. — Engineered
           for Permanence.
         </div>
       </footer>
