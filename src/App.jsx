@@ -143,8 +143,8 @@ const comparisonRows = [
     icon: "cross",
     items: [
       { label: "Monthly Subscription", value: "EGP 1,500+/mo" },
+      { label: "Transaction Fees", value: "2.5% + EGP 10" },
       { label: "Delivery Day", value: "1-2 Weeks" },
-      { label: "Data Ownership", value: "Vendor Lock-In" },
     ],
     total: 54000,
     totalLabel: "3-Year Cost",
@@ -156,8 +156,8 @@ const comparisonRows = [
     icon: "check",
     items: [
       { label: "One-Time Payment", value: "EGP 7,500" },
+      { label: "Transaction Fees", value: "0% Fees" },
       { label: "Delivery Day", value: "One Day" },
-      { label: "Data Ownership", value: "100% Yours" },
     ],
     total: 7500,
     totalLabel: "3-Year Cost",

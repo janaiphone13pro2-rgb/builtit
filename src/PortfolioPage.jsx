@@ -284,7 +284,7 @@ function PortfolioPage() {
   return (
     <div className="portfolio-react">
       <nav className={isScrolled ? "scrolled" : ""}>
-        <a href="#top" className="nav-logo">
+        <a href="/#top" className="nav-logo">
           <Logo />
         </a>
 
@@ -556,7 +556,7 @@ function PortfolioPage() {
       </section>
 
       <footer>
-        <a href="#top" className="footer-logo">
+        <a href="/#top" className="footer-logo">
           <Logo />
         </a>
         <ul className="footer-links">
