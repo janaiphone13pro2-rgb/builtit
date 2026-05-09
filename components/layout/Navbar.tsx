@@ -3,129 +3,67 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  {
-    label: "Services",
-    href: "#services",
-    dropdown: [
-      { label: "B2B Portfolios", href: "/services/b2b" },
-      { label: "E-commerce Stores", href: "/services/ecommerce" },
-      { label: "Student CVs", href: "/services/students" },
-    ],
-  },
-  { label: "Work", href: "/work" },
-  { label: "About", href: "/about" },
-  { label: "Intake", href: "/intake" },
+  { label: "Services", href: "#services" },
+  { label: "Ownership", href: "#ownership" },
+  { label: "Work", href: "#work" },
+  { label: "Process", href: "#process" },
+  { label: "ERP", href: "#erp" },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Add background when scrolled
-      setIsScrolled(currentScrollY > 50);
-
-      // Hide/show based on scroll direction
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsHidden(true);
-      } else {
-        setIsHidden(false);
-      }
-
-      setLastScrollY(currentScrollY);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <>
       <motion.header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled && "bg-background/80 backdrop-blur-xl border-b border-white/[0.08]"
+          isScrolled && "border-b border-white/10 bg-background/80 backdrop-blur-xl"
         )}
-        initial={{ y: -100 }}
-        animate={{ y: isHidden ? -100 : 0 }}
+        initial={{ y: -80 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <nav className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Logo size="md" />
+            <Logo size="md" className="text-white" />
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
+            <div className="hidden items-center gap-7 lg:flex">
               {navLinks.map((link) => (
-                <div
+                <Link
                   key={link.label}
-                  className="relative"
-                  onMouseEnter={() => link.dropdown && setIsDropdownOpen(true)}
-                  onMouseLeave={() => link.dropdown && setIsDropdownOpen(false)}
+                  href={link.href}
+                  className="text-sm font-semibold uppercase tracking-wide text-white/60 transition hover:text-white"
                 >
-                  <Link
-                    href={link.href}
-                    className="flex items-center gap-1 text-sm font-medium text-white/70 hover:text-white transition-colors tracking-wide uppercase"
-                  >
-                    {link.label}
-                    {link.dropdown && (
-                      <ChevronDown className="w-4 h-4 transition-transform" />
-                    )}
-                  </Link>
-
-                  {/* Dropdown */}
-                  <AnimatePresence>
-                    {link.dropdown && isDropdownOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-full left-0 mt-2 py-2 bg-background/95 backdrop-blur-xl border border-white/[0.08] rounded min-w-[200px]"
-                      >
-                        {link.dropdown.map((item) => (
-                          <Link
-                            key={item.label}
-                            href={item.href}
-                            className="block px-4 py-2 text-sm text-white/70 hover:text-lime hover:bg-white/5 transition-colors"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                  {link.label}
+                </Link>
               ))}
             </div>
 
-            {/* CTA Button */}
             <div className="hidden lg:block">
-              <MagneticButton className="group">
-                <Link
-                  href="/intake"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-orange text-white text-sm font-bold uppercase tracking-wide rounded hover:bg-orange/90 transition-colors"
-                >
-                  Start a Project
-                  <span className="transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-              </MagneticButton>
+              <Link
+                href="#booking"
+                className="inline-flex min-h-11 items-center justify-center rounded-md bg-violet-300 px-5 py-2.5 text-sm font-black uppercase tracking-wide text-slate-950 transition hover:bg-violet-200"
+              >
+                Start a Project
+              </Link>
             </div>
 
-            {/* Mobile Menu Toggle */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="lg:hidden p-2 text-white"
@@ -144,7 +82,7 @@ export function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+          transition={{ duration: 0.3 }}
             className="fixed inset-0 z-40 bg-background lg:hidden"
           >
             <div className="flex flex-col items-center justify-center h-full gap-8">
@@ -159,24 +97,10 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-bebas text-4xl text-white hover:text-lime transition-colors"
+                    className="text-4xl font-black text-white transition hover:text-violet-200"
                   >
                     {link.label}
                   </Link>
-                  {link.dropdown && (
-                    <div className="flex flex-col items-center gap-2 mt-4">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.label}
-                          href={item.href}
-                          onClick={() => setIsMobileMenuOpen(false)}
-                          className="text-sm text-white/60 hover:text-lime transition-colors"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
                 </motion.div>
               ))}
               <motion.div
@@ -186,11 +110,11 @@ export function Navbar() {
                 transition={{ delay: 0.4 }}
               >
                 <Link
-                  href="/intake"
+                  href="#booking"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-orange text-white text-lg font-bold uppercase tracking-wide rounded"
+                  className="inline-flex min-h-12 items-center justify-center rounded-md bg-violet-300 px-8 py-3 text-base font-black uppercase tracking-wide text-slate-950"
                 >
-                  Start a Project →
+                  Start a Project
                 </Link>
               </motion.div>
             </div>

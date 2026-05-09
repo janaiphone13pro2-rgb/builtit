@@ -67,7 +67,7 @@ export default function BrandPage() {
                 <h2 className="font-bebas text-5xl md:text-6xl tracking-wide mb-4">Buill<span className="text-lime">t.</span></h2>
                 <p className="text-white/60 max-w-lg mx-auto">
                   The double L represents building blocks — layers of work stacking together. 
-                  The lime "It" emphasizes that we build <em>it</em> — whatever you need.
+                  The lime &quot;It&quot; emphasizes that we build <em>it</em> — whatever you need.
                 </p>
               </FadeUp>
             </div>
@@ -182,7 +182,7 @@ export default function BrandPage() {
             <div className="grid lg:grid-cols-2 gap-12">
               <div>
                 <FadeUp>
-                  <p className="text-sm font-medium tracking-[0.2em] text-lime uppercase mb-4">Do's</p>
+                  <p className="text-sm font-medium tracking-[0.2em] text-lime uppercase mb-4">Do&apos;s</p>
                   <h2 className="font-bebas text-5xl md:text-6xl tracking-wide mb-8">Use It Right</h2>
                 </FadeUp>
                 <FadeUp delay={0.1}>
@@ -204,7 +204,7 @@ export default function BrandPage() {
               </div>
               <div>
                 <FadeUp delay={0.2}>
-                  <p className="text-sm font-medium tracking-[0.2em] text-orange uppercase mb-4">Don'ts</p>
+                  <p className="text-sm font-medium tracking-[0.2em] text-orange uppercase mb-4">Don&apos;ts</p>
                   <h2 className="font-bebas text-5xl md:text-6xl tracking-wide mb-8 text-white/50">Avoid This</h2>
                 </FadeUp>
                 <FadeUp delay={0.3}>
@@ -239,7 +239,7 @@ export default function BrandPage() {
                 </div>
                 <div className="p-6 bg-black/10 rounded">
                   <h3 className="font-bebas text-2xl tracking-wide text-black mb-2">Confident</h3>
-                  <p className="text-sm text-black/70">We know what we do. We don't oversell.</p>
+                  <p className="text-sm text-black/70">We know what we do. We don&apos;t oversell.</p>
                 </div>
                 <div className="p-6 bg-black/10 rounded">
                   <h3 className="font-bebas text-2xl tracking-wide text-black mb-2">Local</h3>

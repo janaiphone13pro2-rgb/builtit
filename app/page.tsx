@@ -2,12 +2,16 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Hero } from "@/components/home/Hero";
+import { TrustBar } from "@/components/home/TrustBar";
 import { Services } from "@/components/home/Services";
-import { HowItWorks } from "@/components/home/HowItWorks";
-import { Stats } from "@/components/home/Stats";
-import { FeaturedWork } from "@/components/home/FeaturedWork";
+import { OneTimePaymentUSP } from "@/components/home/OneTimePaymentUSP";
+import { PortfolioBento } from "@/components/home/PortfolioBento";
+import { ProcessTimeline } from "@/components/home/ProcessTimeline";
+import { ERPCRMSpotlight } from "@/components/home/ERPCRMSpotlight";
+import { ImpactNumbers } from "@/components/home/ImpactNumbers";
 import { Testimonials } from "@/components/home/Testimonials";
-import { IntakeCTA } from "@/components/home/IntakeCTA";
+import { BookingContact } from "@/components/home/BookingContact";
+import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton";
 
 export default function HomePage() {
   return (
@@ -16,14 +20,18 @@ export default function HomePage() {
       <Navbar />
       <main>
         <Hero />
+        <TrustBar />
         <Services />
-        <HowItWorks />
-        <Stats />
-        <FeaturedWork />
+        <OneTimePaymentUSP />
+        <PortfolioBento />
+        <ProcessTimeline />
+        <ERPCRMSpotlight />
+        <ImpactNumbers />
         <Testimonials />
-        <IntakeCTA />
+        <BookingContact />
       </main>
       <Footer />
+      <WhatsAppFloatingButton />
     </>
   );
 }

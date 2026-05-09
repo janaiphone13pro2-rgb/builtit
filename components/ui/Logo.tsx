@@ -31,15 +31,15 @@ export function Logo({
   }[variant];
 
   const accentColor = {
-    primary: "text-lime",
-    reversed: "text-[#C8FF00]",
+    primary: "text-violet-300",
+    reversed: "text-violet-700",
     "mono-white": "text-white",
     "mono-black": "text-black",
   }[variant];
 
   const LogoContent = () => (
-    <span className={cn("font-bebas tracking-wide", sizes[size], textColor, className)}>
-      Buill<span className={accentColor}>t.</span>
+    <span className={cn("font-dm font-black tracking-normal", sizes[size], textColor, className)}>
+      Built<span className={accentColor}>It</span>
     </span>
   );
 
