@@ -8,17 +8,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0A0A0A",
+        background: "#05060D",
         foreground: "#FFFFFF",
         lime: "#C8FF00",
         orange: "#FF4D00",
-        card: "rgba(255, 255, 255, 0.03)",
+        card: "rgba(255, 255, 255, 0.04)",
         "card-border": "rgba(255, 255, 255, 0.08)",
         "muted-foreground": "rgba(255, 255, 255, 0.6)",
       },
       fontFamily: {
         bebas: ["var(--font-bebas)"],
         dm: ["var(--font-dm)"],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          "Liberation Mono",
+          "Courier New",
+          "monospace",
+        ],
       },
       borderRadius: {
         DEFAULT: "4px",
@@ -29,7 +39,7 @@ const config: Config = {
       animation: {
         "fade-up": "fadeUp 0.7s ease forwards",
         "pulse-subtle": "pulseSubtle 3s ease-in-out infinite",
-        "ticker": "ticker 24s linear infinite",
+        "ticker": "ticker 30s linear infinite",
         "grain": "grain 8s steps(10) infinite",
         "count-up": "countUp 1.5s ease-out forwards",
       },

@@ -16,21 +16,24 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "BuiltIt | We Build Digital Presence That Converts",
+  title: "BuiltIt | Custom Software, Fully Owned",
   description:
-    "Portfolios. Storefronts. Digital CVs. Built for the Egyptian market. No subscriptions. Just results.",
+    "Custom websites, apps, ERP, and CRM systems built for one-time payment, full ownership, and no subscriptions.",
   keywords: [
     "web development",
     "ecommerce",
-    "portfolio",
-    "digital CV",
+    "ERP",
+    "CRM",
+    "Next.js",
+    "software agency",
     "Cairo",
     "Egypt",
     "web design",
   ],
   openGraph: {
-    title: "BuiltIt | We Build Digital Presence That Converts",
-    description: "Portfolios. Storefronts. Digital CVs. Built for the Egyptian market.",
+    title: "BuiltIt | Custom Software, Fully Owned",
+    description:
+      "One-time payment websites, apps, ERP, and CRM systems with full ownership and no subscriptions.",
     type: "website",
     locale: "en_US",
   },

@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #0A0A0A;
+  --background: #05060D;
   --foreground: #FFFFFF;
   --lime: #C8FF00;
   --orange: #FF4D00;
-  --card: rgba(255, 255, 255, 0.03);
+  --card: rgba(255, 255, 255, 0.04);
   --card-border: rgba(255, 255, 255, 0.08);
 }
 
@@ -22,11 +22,12 @@
 
   body {
     @apply bg-background text-foreground;
+    min-height: 100vh;
   }
 
   ::selection {
-    background: var(--lime);
-    color: #000;
+    background: #c4b5fd;
+    color: #05060d;
   }
 }
 
