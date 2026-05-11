@@ -69,7 +69,7 @@ export function ImpactNumbers() {
               key={stat.label}
               className="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.03] p-6"
             >
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-violet-300 via-emerald-300 to-sky-300" />
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-lime/25 via-lime to-white/40" />
               <div className="text-5xl font-black text-white md:text-6xl">
                 <AnimatedNumber value={stat.value} suffix={stat.suffix} />
               </div>

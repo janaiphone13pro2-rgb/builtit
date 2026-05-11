@@ -31,15 +31,15 @@ export function Logo({
   }[variant];
 
   const accentColor = {
-    primary: "text-violet-300",
-    reversed: "text-violet-700",
+    primary: "text-lime",
+    reversed: "text-lime",
     "mono-white": "text-white",
     "mono-black": "text-black",
   }[variant];
 
   const LogoContent = () => (
     <span className={cn("font-dm font-black tracking-normal", sizes[size], textColor, className)}>
-      Built<span className={accentColor}>It</span>
+      Built<span className={accentColor}>It.</span>
     </span>
   );
 
@@ -73,10 +73,10 @@ export function LogoSVG({ className }: { className?: string }) {
       <path d="M85 50V13H92V50H85Z" fill="currentColor"/>
       {/* l */}
       <path d="M98 50V13H105V50H98Z" fill="currentColor"/>
-      {/* t (lime) */}
-      <path d="M118 50V27H112V21H118V13H125V21H133V27H125V50H118Z" fill="#C8FF00"/>
-      {/* . (lime) */}
-      <circle cx="145" cy="45" r="5" fill="#C8FF00"/>
+      {/* t (mint) */}
+      <path d="M118 50V27H112V21H118V13H125V21H133V27H125V50H118Z" fill="#4EF2AD"/>
+      {/* . (mint) */}
+      <circle cx="145" cy="45" r="5" fill="#4EF2AD"/>
     </svg>
   );
 }

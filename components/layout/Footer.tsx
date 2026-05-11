@@ -49,7 +49,7 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 text-white/55 hover:text-violet-200 transition-colors"
+                className="p-2 text-white/55 hover:text-lime transition-colors"
                 aria-label={social.label}
               >
                 <social.icon className="h-5 w-5" />

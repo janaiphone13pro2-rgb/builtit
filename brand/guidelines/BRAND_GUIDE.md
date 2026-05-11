@@ -13,18 +13,18 @@
 ## Logo
 
 ### Primary Logo
-The BuiltIt logo consists of the wordmark "Buillt" with the "It" portion highlighted in lime green, followed by a lime period.
+The BuiltIt logo consists of the wordmark "BuiltIt." with the "It." portion highlighted in mint green.
 
 **Double L Meaning:** The double L represents building blocks — layers of work stacking together.
 
-**Lime "It":** The highlighted "It" emphasizes that we build *it* — whatever digital presence you need.
+**Mint "It.":** The highlighted "It." emphasizes that we build *it* — whatever digital presence you need.
 
 ### Logo Versions
 
 | Version | Usage |
 |---------|-------|
-| **Primary** (lime "It" on dark) | Dark backgrounds, main brand usage |
-| **Reversed** (lime "It" on white) | Light backgrounds, print materials |
+| **Primary** (mint "It" on dark) | Dark backgrounds, main brand usage |
+| **Reversed** (mint "It" on white) | Light backgrounds, print materials |
 | **Monochrome White** | Single-color applications |
 | **Monochrome Black** | Light backgrounds when color unavailable |
 
@@ -45,8 +45,8 @@ Maintain minimum clear space around the logo equal to the height of the period/d
 |-------|-----|-----|-------|
 | **Background** | `#0A0A0A` | rgb(10, 10, 10) | Page backgrounds, dark UI |
 | **Foreground** | `#FFFFFF` | rgb(255, 255, 255) | Text, icons |
-| **Lime** | `#C8FF00` | rgb(200, 255, 0) | Primary accent, CTAs, highlights |
-| **Orange** | `#FF4D00` | rgb(255, 77, 0) | Secondary CTA, urgency |
+| **Mint** | `#4EF2AD` | rgb(78, 242, 173) | Primary accent, CTAs, highlights |
+| **Mint Glow** | `rgba(78,242,173,0.18)` | rgba(78, 242, 173, 0.18) | Soft highlights and hover states |
 
 ### Secondary Colors
 
@@ -55,12 +55,12 @@ Maintain minimum clear space around the logo equal to the height of the period/d
 | **Card BG** | `rgba(255,255,255,0.03)` | Card backgrounds |
 | **Border** | `rgba(255,255,255,0.08)` | Subtle borders |
 | **Muted** | `rgba(255,255,255,0.6)` | Secondary text |
-| **Lime 10%** | `rgba(200,255,0,0.1)` | Icon backgrounds |
+| **Mint 10%** | `rgba(78,242,173,0.1)` | Icon backgrounds |
 
 ### Color Usage Rules
 
-1. **Lime is precious** — use sparingly for maximum impact
-2. **Orange is for action** — primary conversion buttons only
+1. **Mint is precious** — use sparingly for maximum impact
+2. **Mint anchors action** — primary conversion buttons and ownership highlights use mint
 3. **White is 70% of UI** — text, icons, subtle elements
 4. **Background stays dark** — our signature look
 
@@ -95,7 +95,7 @@ Maintain minimum clear space around the logo equal to the height of the period/d
 ### Typography Patterns
 
 ```
-Section Label: 12px, uppercase, tracking-[0.2em], lime color
+Section Label: 12px, uppercase, tracking-[0.2em], mint color
 Headline: Bebas Neue, uppercase, wide tracking
 Body: DM Sans, white/70% opacity, max-width 65ch
 ```
@@ -139,7 +139,7 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 - High contrast
 - Architectural or tech-focused
 - Egyptian context when possible
-- Desaturated except for lime accents
+- Desaturated except for mint accents
 
 ### Treatment
 
@@ -153,15 +153,15 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 
 ### Buttons
 
-**Primary CTA (Orange)**
-- Background: `#FF4D00`
-- Text: white, uppercase, bold
+**Primary CTA (Mint)**
+- Background: `#4EF2AD`
+- Text: black, uppercase, bold
 - Padding: 16px 32px
 - Radius: 4px
 - Hover: darken 10%
 
-**Secondary (Lime)**
-- Background: `#C8FF00`
+**Secondary (Mint)**
+- Background: `#4EF2AD`
 - Text: black, uppercase, bold
 - Padding: 16px 32px
 - Radius: 4px
@@ -178,13 +178,13 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 - Border: 1px `rgba(255,255,255,0.08)`
 - Radius: 4px
 - Padding: 24px or 32px
-- Hover: lime border glow (subtle)
+- Hover: mint border glow (subtle)
 
 ### Inputs
 
 - Background: `#0A0A0A`
 - Border: 1px `rgba(255,255,255,0.08)`
-- Focus: lime border
+- Focus: mint border
 - Radius: 4px
 - Padding: 12px 16px
 
@@ -260,9 +260,9 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 
 ### Merchandise
 
-- Stickers (lime logo on black)
+- Stickers (mint logo on black)
 - T-shirts (white logo on black)
-- Tote bags (lime logo on black)
+- Tote bags (mint logo on black)
 
 ---
 
@@ -272,7 +272,7 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 builtit-logo-[version]-[color]-[size].[format]
 
 Examples:
-builtit-logo-primary-lime-1024.svg
+builtit-logo-primary-mint-1024.svg
 builtit-logo-reversed-black-512.png
 builtit-logo-mono-white-256.png
 ```
@@ -286,7 +286,7 @@ builtit-logo-mono-white-256.png
 3. Don't rotate the logo
 4. Don't add effects (shadows, glows) to the logo
 5. Don't place the logo on busy backgrounds
-6. Don't use the lime color for large text areas
+6. Don't use the mint color for large text areas
 
 ---
 

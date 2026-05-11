@@ -8,7 +8,7 @@ export function Services() {
     <section id="services" className="relative bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-14 max-w-3xl">
-          <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-violet-300">
+          <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-lime">
             What we build
           </p>
           <h2 className="text-balance text-4xl font-black tracking-normal text-white md:text-6xl">
@@ -39,10 +39,10 @@ export function Services() {
                 },
               }}
             >
-              <span className="absolute right-6 top-6 rounded border border-violet-300/20 bg-violet-300/10 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-violet-200">
+              <span className="absolute right-6 top-6 rounded border border-lime/20 bg-lime/10 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-lime">
                 {service.tag}
               </span>
-              <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-violet-200 transition group-hover:border-violet-300/50 group-hover:bg-violet-300/10">
+              <div className="mb-8 flex h-12 w-12 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-lime transition group-hover:border-lime/50 group-hover:bg-lime/10">
                 <service.icon className="h-6 w-6" />
               </div>
               <h3 className="mb-3 pr-20 text-2xl font-black text-white">{service.title}</h3>

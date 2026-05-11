@@ -78,7 +78,7 @@ export default function StudentsServicePage() {
                 Your work, your story, online. A professional digital CV that helps you stand out when applying for jobs or internships.
               </p>
               <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-orange text-white font-bold uppercase tracking-wide rounded hover:bg-orange/90 transition-colors">
+                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
                   Start This Project
                   <ArrowRight className="w-5 h-5" />
                 </Link>
@@ -228,7 +228,7 @@ export default function StudentsServicePage() {
             </FadeUp>
             <FadeUp delay={0.2}>
               <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-orange text-white font-bold uppercase tracking-wide rounded hover:bg-orange/90 transition-colors">
+                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
                   Build Your CV
                   <ArrowRight className="w-5 h-5" />
                 </Link>

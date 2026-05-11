@@ -31,7 +31,7 @@ export function PortfolioBento() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
-            <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-violet-300">
+            <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-lime">
               Portfolio
             </p>
             <h2 className="text-balance text-4xl font-black tracking-normal text-white md:text-6xl">
@@ -49,8 +49,8 @@ export function PortfolioBento() {
                 className={cn(
                   "rounded-md border px-4 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition",
                   activeCategory === category
-                    ? "border-violet-300 bg-violet-300 text-slate-950"
-                    : "border-white/10 bg-white/[0.03] text-white/60 hover:border-violet-300/50 hover:text-white"
+                    ? "border-lime bg-lime text-slate-950"
+                    : "border-white/10 bg-white/[0.03] text-white/60 hover:border-lime/50 hover:text-white"
                 )}
               >
                 {category}
@@ -91,14 +91,14 @@ export function PortfolioBento() {
                     <span className="rounded border border-white/15 bg-black/35 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-white/75 backdrop-blur">
                       {project.category}
                     </span>
-                    <span className="rounded border border-violet-300/25 bg-violet-300/10 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-violet-100 backdrop-blur">
+                    <span className="rounded border border-lime/25 bg-lime/10 px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider text-lime backdrop-blur">
                       {project.tech}
                     </span>
                   </div>
                   <h3 className="text-2xl font-black text-white">{project.name}</h3>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center bg-slate-950/70 opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100">
-                  <span className="inline-flex items-center gap-2 rounded-md bg-violet-300 px-4 py-3 text-sm font-black uppercase tracking-wide text-slate-950">
+                  <span className="inline-flex items-center gap-2 rounded-md bg-lime px-4 py-3 text-sm font-black uppercase tracking-wide text-slate-950">
                     Live Demo
                     <ExternalLink className="h-4 w-4" />
                   </span>

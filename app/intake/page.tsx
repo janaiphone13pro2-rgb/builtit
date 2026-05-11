@@ -217,7 +217,7 @@ export default function IntakePage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-orange text-white font-bold uppercase tracking-wide rounded hover:bg-orange/90 transition-colors text-sm disabled:opacity-50"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors text-sm disabled:opacity-50"
                     >
                       {isSubmitting ? (
                         <>

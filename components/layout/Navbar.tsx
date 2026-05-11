@@ -58,7 +58,7 @@ export function Navbar() {
             <div className="hidden lg:block">
               <Link
                 href="#booking"
-                className="inline-flex min-h-11 items-center justify-center rounded-md bg-violet-300 px-5 py-2.5 text-sm font-black uppercase tracking-wide text-slate-950 transition hover:bg-violet-200"
+                className="inline-flex min-h-11 items-center justify-center rounded-md bg-lime px-5 py-2.5 text-sm font-black uppercase tracking-wide text-slate-950 transition hover:bg-lime/90"
               >
                 Start a Project
               </Link>
@@ -97,7 +97,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-4xl font-black text-white transition hover:text-violet-200"
+                    className="text-4xl font-black text-white transition hover:text-lime"
                   >
                     {link.label}
                   </Link>
@@ -112,7 +112,7 @@ export function Navbar() {
                 <Link
                   href="#booking"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="inline-flex min-h-12 items-center justify-center rounded-md bg-violet-300 px-8 py-3 text-base font-black uppercase tracking-wide text-slate-950"
+                  className="inline-flex min-h-12 items-center justify-center rounded-md bg-lime px-8 py-3 text-base font-black uppercase tracking-wide text-slate-950"
                 >
                   Start a Project
                 </Link>

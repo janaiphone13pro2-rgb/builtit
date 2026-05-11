@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 const colors = [
   { name: "Background", hex: "#0A0A0A", usage: "Page backgrounds, dark UI" },
   { name: "Foreground", hex: "#FFFFFF", usage: "Text, icons" },
-  { name: "Lime", hex: "#C8FF00", usage: "Primary accent, CTAs, highlights" },
-  { name: "Orange", hex: "#FF4D00", usage: "Secondary CTA, urgency" },
+  { name: "Mint", hex: "#4EF2AD", usage: "Primary accent, CTAs, highlights" },
+  { name: "Mint Glow", hex: "rgba(78,242,173,0.18)", usage: "Soft highlights and hover states" },
   { name: "Card", hex: "rgba(255,255,255,0.03)", usage: "Card backgrounds" },
   { name: "Border", hex: "rgba(255,255,255,0.08)", usage: "Subtle borders" },
 ];
@@ -29,7 +29,7 @@ const donts = [
   "Don't rotate the logo",
   "Don't add effects (shadows, glows)",
   "Don't place on busy backgrounds",
-  "Don't use lime for large text areas",
+  "Don't use mint for large text areas",
 ];
 
 export default function BrandPage() {
@@ -64,10 +64,10 @@ export default function BrandPage() {
                 <p className="text-sm font-medium tracking-[0.2em] text-lime uppercase mb-4">The Logo</p>
               </FadeUp>
               <FadeUp delay={0.1}>
-                <h2 className="font-bebas text-5xl md:text-6xl tracking-wide mb-4">Buill<span className="text-lime">t.</span></h2>
+                <h2 className="font-bebas text-5xl md:text-6xl tracking-wide mb-4">Built<span className="text-lime">It.</span></h2>
                 <p className="text-white/60 max-w-lg mx-auto">
                   The double L represents building blocks — layers of work stacking together. 
-                  The lime &quot;It&quot; emphasizes that we build <em>it</em> — whatever you need.
+                  The mint &quot;It&quot; emphasizes that we build <em>it</em> — whatever you need.
                 </p>
               </FadeUp>
             </div>
@@ -77,7 +77,7 @@ export default function BrandPage() {
               <StaggerItem>
                 <div className="aspect-square bg-[#0A0A0A] border border-[#ffffff15] rounded flex items-center justify-center">
                   <span className="font-bebas text-6xl tracking-wide">
-                    Buill<span className="text-lime">t.</span>
+                    Built<span className="text-lime">It.</span>
                   </span>
                 </div>
                 <p className="text-center text-sm text-white/60 mt-3">Primary (Dark BG)</p>
@@ -85,7 +85,7 @@ export default function BrandPage() {
               <StaggerItem>
                 <div className="aspect-square bg-white border border-[#ffffff15] rounded flex items-center justify-center">
                   <span className="font-bebas text-6xl tracking-wide text-black">
-                    Buill<span className="text-[#C8FF00]">t.</span>
+                    Built<span className="text-[#4EF2AD]">It.</span>
                   </span>
                 </div>
                 <p className="text-center text-sm text-white/60 mt-3">Reversed (Light BG)</p>
@@ -93,7 +93,7 @@ export default function BrandPage() {
               <StaggerItem>
                 <div className="aspect-square bg-[#0A0A0A] border border-[#ffffff15] rounded flex items-center justify-center">
                   <span className="font-bebas text-6xl tracking-wide text-white">
-                    Buillt<span className="text-white">.</span>
+                    BuiltIt<span className="text-white">.</span>
                   </span>
                 </div>
                 <p className="text-center text-sm text-white/60 mt-3">Monochrome</p>
@@ -110,7 +110,7 @@ export default function BrandPage() {
                 <p className="text-sm font-medium tracking-[0.2em] text-lime uppercase mb-4">Color Palette</p>
               </FadeUp>
               <FadeUp delay={0.1}>
-                <h2 className="font-bebas text-5xl md:text-6xl tracking-wide">Dark. Bold. Lime.</h2>
+                <h2 className="font-bebas text-5xl md:text-6xl tracking-wide">Dark. Bold. Mint.</h2>
               </FadeUp>
             </div>
 
@@ -189,7 +189,7 @@ export default function BrandPage() {
                   <ul className="space-y-4">
                     {[
                       "Maintain clear space around the logo",
-                      "Use lime sparingly for maximum impact",
+                      "Use mint sparingly for maximum impact",
                       "Keep text uppercase in headlines",
                       "Use 4px border radius consistently",
                       "Support prefers-reduced-motion",
@@ -204,14 +204,14 @@ export default function BrandPage() {
               </div>
               <div>
                 <FadeUp delay={0.2}>
-                  <p className="text-sm font-medium tracking-[0.2em] text-orange uppercase mb-4">Don&apos;ts</p>
+                  <p className="text-sm font-medium tracking-[0.2em] text-red-300 uppercase mb-4">Don&apos;ts</p>
                   <h2 className="font-bebas text-5xl md:text-6xl tracking-wide mb-8 text-white/50">Avoid This</h2>
                 </FadeUp>
                 <FadeUp delay={0.3}>
                   <ul className="space-y-4">
                     {donts.map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <span className="w-5 h-5 rounded bg-orange/20 text-orange flex items-center justify-center text-xs">×</span>
+                        <span className="w-5 h-5 rounded bg-red-400/15 text-red-300 flex items-center justify-center text-xs">×</span>
                         <span className="text-white/70">{item}</span>
                       </li>
                     ))}

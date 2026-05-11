@@ -9,7 +9,7 @@ export function Testimonials() {
     <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto mb-14 max-w-3xl text-center">
-          <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-violet-300">
+          <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-lime">
             Testimonials
           </p>
           <h2 className="text-balance text-4xl font-black tracking-normal text-white md:text-6xl">
@@ -27,10 +27,10 @@ export function Testimonials() {
               viewport={{ once: true, margin: "-120px" }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
             >
-              <Quote className="mb-6 h-8 w-8 text-violet-200" />
+              <Quote className="mb-6 h-8 w-8 text-lime" />
               <p className="min-h-32 leading-7 text-white/75">&ldquo;{testimonial.quote}&rdquo;</p>
               <div className="mt-8 flex items-center gap-3 border-t border-white/10 pt-5">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-violet-300/30 bg-violet-300/10 font-mono text-sm font-bold text-violet-100">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-lime/30 bg-lime/10 font-mono text-sm font-bold text-lime">
                   {testimonial.initials}
                 </div>
                 <div>

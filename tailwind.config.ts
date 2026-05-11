@@ -10,8 +10,8 @@ const config: Config = {
       colors: {
         background: "#05060D",
         foreground: "#FFFFFF",
-        lime: "#C8FF00",
-        orange: "#FF4D00",
+        lime: "#4EF2AD",
+        mint: "#4EF2AD",
         card: "rgba(255, 255, 255, 0.04)",
         "card-border": "rgba(255, 255, 255, 0.08)",
         "muted-foreground": "rgba(255, 255, 255, 0.6)",

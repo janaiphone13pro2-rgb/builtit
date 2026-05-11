@@ -39,9 +39,9 @@ export function OneTimePaymentUSP() {
 
       gsap.fromTo(
         usRef.current,
-        { boxShadow: "0 0 0 rgba(74,222,128,0)" },
+        { boxShadow: "0 0 0 rgba(78,242,173,0)" },
         {
-          boxShadow: "0 0 55px rgba(74,222,128,0.18)",
+          boxShadow: "0 0 55px rgba(78,242,173,0.18)",
           duration: 1,
           ease: "power2.out",
           scrollTrigger: {
@@ -70,7 +70,7 @@ export function OneTimePaymentUSP() {
           viewport={{ once: true, margin: "-120px" }}
           transition={{ duration: 0.65 }}
         >
-          <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-violet-300">
+          <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-lime">
             One-time payment
           </p>
           <h2 className="text-balance text-4xl font-black tracking-normal text-white md:text-6xl">
@@ -102,17 +102,17 @@ export function OneTimePaymentUSP() {
 
           <div
             ref={usRef}
-            className="rounded-lg border border-emerald-300/30 bg-emerald-400/10 p-6 lg:p-8"
+            className="rounded-lg border border-lime/30 bg-lime/10 p-6 lg:p-8"
           >
             <div className="mb-8 flex items-center gap-3">
-              <CheckCircle2 className="h-6 w-6 text-emerald-300" />
+              <CheckCircle2 className="h-6 w-6 text-lime" />
               <h3 className="text-2xl font-black text-white">Us</h3>
             </div>
             <div className="space-y-5">
               {comparison.us.map((item) => (
                 <div key={item} className="flex items-center justify-between gap-4">
                   <span className="text-lg font-semibold text-white">{item}</span>
-                  <span className="font-mono text-xs uppercase tracking-widest text-emerald-200">
+                  <span className="font-mono text-xs uppercase tracking-widest text-lime">
                     yours
                   </span>
                 </div>

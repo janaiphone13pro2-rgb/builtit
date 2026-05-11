@@ -162,7 +162,7 @@ export function BookingContact() {
     <section id="booking" className="bg-[#080a12] py-24 lg:py-32">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.88fr_1.12fr] lg:px-8">
         <div>
-          <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-violet-300">
+          <p className="mb-4 font-mono text-sm uppercase tracking-[0.24em] text-lime">
             Booking / Contact
           </p>
           <h2 className="text-balance text-4xl font-black tracking-normal text-white md:text-6xl">
@@ -176,7 +176,7 @@ export function BookingContact() {
             href="https://wa.me/201284744633"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-emerald-300/30 bg-emerald-400/10 px-5 py-3 text-sm font-black uppercase tracking-wide text-emerald-100 transition hover:bg-emerald-400/15"
+            className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-lime/35 bg-lime/10 px-5 py-3 text-sm font-black uppercase tracking-wide text-lime transition hover:bg-lime/15"
           >
             <MessageCircle className="h-4 w-4" />
             WhatsApp Us
@@ -187,7 +187,7 @@ export function BookingContact() {
           <div className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
             <div className="mb-5 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <CalendarDays className="h-5 w-5 text-violet-200" />
+                <CalendarDays className="h-5 w-5 text-lime" />
                 <h3 className="text-xl font-black text-white">Choose a date</h3>
               </div>
               {currentMonth && (
@@ -265,8 +265,8 @@ export function BookingContact() {
                         className={cn(
                           "aspect-square rounded-md border text-sm font-semibold transition",
                           selected
-                            ? "border-violet-300 bg-violet-300 text-slate-950"
-                            : "border-white/10 bg-slate-950/45 text-white/70 hover:border-violet-300/60 hover:text-white",
+                            ? "border-lime bg-lime text-slate-950"
+                            : "border-white/10 bg-slate-950/45 text-white/70 hover:border-lime/60 hover:text-white",
                           disabled && "cursor-not-allowed opacity-25 hover:border-white/10"
                         )}
                       >
@@ -300,8 +300,8 @@ export function BookingContact() {
                       className={cn(
                         "min-h-11 rounded-md border px-3 py-2 font-mono text-xs font-semibold uppercase tracking-wider transition",
                         selectedTime === time
-                          ? "border-emerald-300 bg-emerald-300 text-slate-950"
-                          : "border-white/10 bg-slate-950/45 text-white/65 hover:border-emerald-300/50 hover:text-white"
+                          ? "border-lime bg-lime text-slate-950"
+                          : "border-white/10 bg-slate-950/45 text-white/65 hover:border-lime/50 hover:text-white"
                       )}
                     >
                       {time}
@@ -321,7 +321,7 @@ export function BookingContact() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 18 }}
               >
-                <div className="mb-5 flex items-center gap-3 text-emerald-200">
+                <div className="mb-5 flex items-center gap-3 text-lime">
                   <CheckCircle2 className="h-5 w-5" />
                   <span className="font-mono text-sm uppercase tracking-wider">
                     {displayDate(selectedDate)} at {selectedTime}
@@ -334,7 +334,7 @@ export function BookingContact() {
                     onChange={(event) => handleChange("fullName", event.target.value)}
                     placeholder="Full name"
                     aria-label="Full name"
-                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-violet-300"
+                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-lime"
                   />
                   <input
                     type="email"
@@ -342,21 +342,21 @@ export function BookingContact() {
                     onChange={(event) => handleChange("email", event.target.value)}
                     placeholder="Email address"
                     aria-label="Email address"
-                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-violet-300"
+                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-lime"
                   />
                   <input
                     value={form.phone}
                     onChange={(event) => handleChange("phone", event.target.value)}
                     placeholder="Phone / WhatsApp"
                     aria-label="Phone or WhatsApp"
-                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-violet-300"
+                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-lime"
                   />
                   <input
                     value={form.company}
                     onChange={(event) => handleChange("company", event.target.value)}
                     placeholder="Company"
                     aria-label="Company"
-                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-violet-300"
+                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition placeholder:text-white/35 focus:border-lime"
                   />
                   <select
                     value={form.projectType}
@@ -367,7 +367,7 @@ export function BookingContact() {
                       )
                     }
                     aria-label="Project type"
-                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition focus:border-violet-300"
+                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition focus:border-lime"
                   >
                     {projectTypes.map((type) => (
                       <option key={type}>{type}</option>
@@ -379,7 +379,7 @@ export function BookingContact() {
                       handleChange("budget", event.target.value as ContactFormData["budget"])
                     }
                     aria-label="Budget"
-                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition focus:border-violet-300"
+                    className="min-h-12 rounded-md border border-white/10 bg-slate-950/70 px-4 text-white outline-none transition focus:border-lime"
                   >
                     {budgets.map((budget) => (
                       <option key={budget}>{budget}</option>
@@ -393,7 +393,7 @@ export function BookingContact() {
                   placeholder="Tell us what you want to build"
                   aria-label="Project message"
                   rows={5}
-                  className="mt-4 w-full rounded-md border border-white/10 bg-slate-950/70 px-4 py-3 text-white outline-none transition placeholder:text-white/35 focus:border-violet-300"
+                  className="mt-4 w-full rounded-md border border-white/10 bg-slate-950/70 px-4 py-3 text-white outline-none transition placeholder:text-white/35 focus:border-lime"
                 />
 
                 {status === "error" && (
@@ -403,7 +403,7 @@ export function BookingContact() {
                 )}
 
                 {status === "success" && (
-                  <p className="mt-4 text-sm text-emerald-200" aria-live="polite">
+                  <p className="mt-4 text-sm text-lime" aria-live="polite">
                     Your request was sent. We will contact you shortly.
                   </p>
                 )}
@@ -411,7 +411,7 @@ export function BookingContact() {
                 <button
                   type="submit"
                   disabled={status === "submitting"}
-                  className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-violet-300 px-6 py-3 text-sm font-black uppercase tracking-wide text-slate-950 transition hover:bg-violet-200 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-5 inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-lime px-6 py-3 text-sm font-black uppercase tracking-wide text-slate-950 transition hover:bg-lime/90 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   {status === "submitting" ? (
                     <>
