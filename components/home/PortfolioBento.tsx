@@ -35,7 +35,7 @@ export function PortfolioBento() {
               Portfolio
             </p>
             <h2 className="text-balance text-4xl font-black tracking-normal text-white md:text-6xl">
-              Curated builds across commerce, portfolios, and internal systems.
+              Real launches across portfolios, Shopify, WordPress, and custom-coded sites.
             </h2>
           </div>
 
@@ -82,6 +82,7 @@ export function PortfolioBento() {
                   src={project.image}
                   alt={`${project.name} website screenshot`}
                   fill
+                  unoptimized
                   className="object-cover opacity-80 transition duration-500 group-hover:scale-105 group-hover:opacity-100"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
@@ -96,6 +97,9 @@ export function PortfolioBento() {
                     </span>
                   </div>
                   <h3 className="text-2xl font-black text-white">{project.name}</h3>
+                  <p className="mt-2 line-clamp-2 text-sm leading-6 text-white/70">
+                    {project.description}
+                  </p>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center bg-slate-950/70 opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100">
                   <span className="inline-flex items-center gap-2 rounded-md bg-lime px-4 py-3 text-sm font-black uppercase tracking-wide text-slate-950">

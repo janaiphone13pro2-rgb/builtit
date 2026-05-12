@@ -6,57 +6,13 @@ import { CustomCursor } from "@/components/ui/CustomCursor";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { portfolioProjects } from "@/lib/landing-data";
 
 export const metadata: Metadata = {
   title: "Work | BuiltIt",
-  description: "Selected projects we've built for businesses and students across Egypt.",
+  description: "Live portfolios, Shopify stores, WordPress sites, and custom-coded websites by BuiltIt.",
 };
-
-const projects = [
-  {
-    title: "NileTech Solutions",
-    category: "B2B Portfolio",
-    description: "Corporate website for a Cairo-based tech consultancy. Features bilingual support, case studies, and lead generation forms.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-    tags: ["Corporate", "Bilingual", "CMS"],
-  },
-  {
-    title: "Khan El Khalili Crafts",
-    category: "E-commerce",
-    description: "Online storefront for traditional Egyptian handicrafts. Integrated with Instapay and local couriers.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-    tags: ["E-commerce", "Instapay", "COD"],
-  },
-  {
-    title: "Ahmed Hassan",
-    category: "Student CV",
-    description: "Digital portfolio for an architecture graduate from AUC. Project gallery with before/after sliders.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
-    tags: ["Portfolio", "Architecture", "Gallery"],
-  },
-  {
-    title: "Cairo Fashion House",
-    category: "E-commerce",
-    description: "Modern boutique e-commerce with AR try-on feature and seasonal lookbooks.",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
-    tags: ["Fashion", "Mobile-first", "Instagram Shop"],
-  },
-  {
-    title: "Delta Logistics",
-    category: "B2B Portfolio",
-    description: "Industrial logistics company website with fleet tracking integration and quote request system.",
-    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
-    tags: ["Industrial", "Logistics", "Forms"],
-  },
-  {
-    title: "Mariam El-Desouky",
-    category: "Student CV",
-    description: "Digital CV for a computer science student. Includes GitHub integration and interactive project demos.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
-    tags: ["Tech", "Developer", "GitHub"],
-  },
-];
 
 export default function WorkPage() {
   return (
@@ -76,7 +32,7 @@ export default function WorkPage() {
                 <span className="text-white/50">Projects.</span>
               </h1>
               <p className="text-lg text-white/70 max-w-xl">
-                A selection of portfolios, stores, and digital CVs we&apos;ve built for clients across Egypt.
+                A selection of live portfolios, stores, WordPress sites, and custom-coded websites we&apos;ve built.
               </p>
             </div>
           </div>
@@ -86,14 +42,20 @@ export default function WorkPage() {
         <section className="py-12 lg:py-20">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
-              {projects.map((project) => (
-                <StaggerItem key={project.title}>
-                  <div className="group">
+              {portfolioProjects.map((project) => (
+                <StaggerItem key={project.name}>
+                  <a
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block"
+                  >
                     <div className="relative aspect-[4/3] overflow-hidden rounded bg-card border border-[#ffffff15] mb-4">
                       <Image
                         src={project.image}
-                        alt={project.title}
+                        alt={`${project.name} website screenshot`}
                         fill
+                        unoptimized
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
@@ -105,9 +67,10 @@ export default function WorkPage() {
                     </div>
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <h3 className="font-bebas text-2xl tracking-wide">{project.title}</h3>
+                        <h3 className="font-bebas text-2xl tracking-wide">{project.name}</h3>
                         <p className="text-sm text-white/50">{project.category}</p>
                       </div>
+                      <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-lime opacity-0 transition-opacity group-hover:opacity-100" />
                     </div>
                     <div className="flex flex-wrap gap-2 mt-3">
                       {project.tags.map((tag) => (
@@ -116,7 +79,7 @@ export default function WorkPage() {
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </a>
                 </StaggerItem>
               ))}
             </StaggerContainer>

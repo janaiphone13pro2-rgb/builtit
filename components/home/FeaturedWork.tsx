@@ -4,33 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
+import { portfolioProjects } from "@/lib/landing-data";
 
-const works = [
-  {
-    title: "NileTech Solutions",
-    category: "B2B Portfolio",
-    description: "Corporate website for a Cairo-based tech consultancy.",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-  },
-  {
-    title: "Khan El Khalili Crafts",
-    category: "E-commerce",
-    description: "Online storefront for traditional Egyptian handicrafts.",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
-  },
-  {
-    title: "Ahmed Hassan",
-    category: "Student CV",
-    description: "Digital portfolio for an architecture graduate.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
-  },
-  {
-    title: "Cairo Fashion House",
-    category: "E-commerce",
-    description: "Modern boutique e-commerce with local payment integration.",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
-  },
-];
+const works = portfolioProjects.filter((project) => project.featured).slice(0, 4);
 
 export function FeaturedWork() {
   return (
@@ -64,13 +40,14 @@ export function FeaturedWork() {
         {/* Work Grid */}
         <StaggerContainer className="grid md:grid-cols-2 gap-6" staggerDelay={0.1}>
           {works.map((work) => (
-            <StaggerItem key={work.title}>
-              <Link href="/work" className="group block">
+            <StaggerItem key={work.name}>
+              <a href={work.href} target="_blank" rel="noopener noreferrer" className="group block">
                 <div className="relative aspect-[16/10] overflow-hidden rounded bg-card border border-[#ffffff15]">
                   <Image
                     src={work.image}
-                    alt={work.title}
+                    alt={`${work.name} website screenshot`}
                     fill
+                    unoptimized
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
@@ -79,19 +56,19 @@ export function FeaturedWork() {
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <p className="text-sm text-white/80 mb-2">{work.description}</p>
                       <div className="flex items-center gap-2 text-lime">
-                        <span className="text-sm font-bold uppercase tracking-wide">View</span>
+                        <span className="text-sm font-bold uppercase tracking-wide">Visit Site</span>
                         <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="mt-4 flex items-center justify-between">
-                  <h3 className="font-bebas text-2xl tracking-wide">{work.title}</h3>
+                  <h3 className="font-bebas text-2xl tracking-wide">{work.name}</h3>
                   <span className="text-xs font-medium uppercase tracking-wide text-white/50 px-3 py-1 rounded bg-white/5">
                     {work.category}
                   </span>
                 </div>
-              </Link>
+              </a>
             </StaggerItem>
           ))}
         </StaggerContainer>
