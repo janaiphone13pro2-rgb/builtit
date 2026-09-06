@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Github, Instagram, Linkedin } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
@@ -25,8 +23,9 @@ export function Footer() {
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-8">
           <div>
             <Logo size="lg" />
-            <p className="mt-4 text-white/60 text-sm leading-relaxed max-w-xs">
-              Custom-built. Fully owned. No subscriptions.
+            <p className="mt-4 max-w-sm text-base leading-relaxed text-white/70">
+              Websites, applications, and business systems built around the way your
+              organisation works.
             </p>
           </div>
 
@@ -35,7 +34,7 @@ export function Footer() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm font-semibold text-white/60 hover:text-white transition-colors uppercase tracking-wide"
+                className="text-sm font-semibold uppercase tracking-wide text-white/70 transition-colors hover:text-white"
               >
                 {link.label}
               </Link>
@@ -58,13 +57,18 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-white/40">
+        <div className="mt-12 flex flex-col gap-5 border-t border-white/[0.08] pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-white/60">
             © 2026 BuiltIt. All rights reserved.
           </p>
-          <p className="text-sm text-white/40">
-            One-time payment, no subscriptions, full ownership.
-          </p>
+          <nav aria-label="Legal" className="flex items-center gap-5 text-sm font-medium text-white/65">
+            <Link className="transition-colors hover:text-white" href="/privacy">
+              Privacy
+            </Link>
+            <Link className="transition-colors hover:text-white" href="/terms">
+              Terms
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>

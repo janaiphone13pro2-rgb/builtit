@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -6,11 +5,14 @@ import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedT
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import Link from "next/link";
 import { ArrowRight, MapPin, Zap, Target, Heart } from "lucide-react";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About | BuiltIt",
-  description: "We are a Cairo-based web development studio building digital presence for Egyptian businesses and students.",
-};
+export const metadata = createPageMetadata({
+  title: "About BuiltIt | Software Development Partner",
+  description:
+    "Learn about BuiltIt and its approach to designing and developing websites, applications, and custom business systems.",
+  path: "/about",
+});
 
 const values = [
   { icon: Zap, title: "Speed", description: "We deliver in days, not months. No unnecessary delays." },

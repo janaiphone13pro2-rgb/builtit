@@ -1,6 +1,6 @@
-import { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AnimatedText, FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
 import { TiltCard } from "@/components/ui/TiltCard";
@@ -18,11 +18,33 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
+import {
+  createBreadcrumbSchema,
+  createPageMetadata,
+  createServiceSchema,
+} from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "B2B Portfolio Services | BuiltIt",
-  description: "Professional company portfolios for businesses that need to impress clients before the first meeting.",
-};
+const pageTitle = "Business Websites & Digital Platforms | BuiltIt";
+const pageDescription =
+  "Custom business websites and digital platforms designed to explain services clearly, support enquiries, and give internal teams control of content.";
+
+export const metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/services/b2b",
+});
+
+const serviceSchema = createServiceSchema({
+  name: "Business Website and Digital Platform Development",
+  description: pageDescription,
+  path: "/services/b2b",
+  serviceType: "Business website and digital platform development",
+});
+
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Business website services", path: "/services/b2b" },
+]);
 
 const features = [
   { icon: Palette, title: "Custom Design", description: "Unique design tailored to your brand identity and industry standards." },
@@ -62,6 +84,8 @@ const stats = [
 export default function B2BServicePage() {
   return (
     <>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <CustomCursor />
       <Navbar />
       <main>

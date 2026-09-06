@@ -1,13 +1,15 @@
-import { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
+import { createPageMetadata } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Brand Guidelines | BuiltIt",
-  description: "BuiltIt brand identity guidelines, colors, typography, and logo usage.",
-};
+  description: "BuiltIt brand identity guidelines covering logo, colour, and typography usage.",
+  path: "/brand",
+  index: false,
+});
 
 const colors = [
   { name: "Background", hex: "#0A0A0A", usage: "Page backgrounds, dark UI" },

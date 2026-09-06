@@ -1,6 +1,6 @@
-import { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AnimatedText, FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
 import { TiltCard } from "@/components/ui/TiltCard";
@@ -18,11 +18,33 @@ import {
   Rocket,
   ArrowRight,
 } from "lucide-react";
+import {
+  createBreadcrumbSchema,
+  createPageMetadata,
+  createServiceSchema,
+} from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Student Digital CV | BuiltIt",
-  description: "A link you're proud to share. Your work, your story, online. Personal domain, project showcase, and LinkedIn-ready.",
-};
+const pageTitle = "Digital Portfolio Websites | BuiltIt";
+const pageDescription =
+  "Personal portfolio websites for students and early-career professionals who need a clear, shareable home for their work and experience.";
+
+export const metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/services/students",
+});
+
+const serviceSchema = createServiceSchema({
+  name: "Digital Portfolio Website Development",
+  description: pageDescription,
+  path: "/services/students",
+  serviceType: "Personal portfolio website development",
+});
+
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "Digital portfolio websites", path: "/services/students" },
+]);
 
 const features = [
   { icon: Globe, title: "Personal Domain", description: "YourName.com — a professional address for your personal brand." },
@@ -62,6 +84,8 @@ const stats = [
 export default function StudentsServicePage() {
   return (
     <>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <CustomCursor />
       <Navbar />
       <main>

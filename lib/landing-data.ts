@@ -101,7 +101,13 @@ export type PortfolioProject = {
 };
 
 const websiteScreenshot = (url: string) =>
-  `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1200`;
+  `/images/work/${url
+    .replace(/^https?:\/\//, "")
+    .replace(/^www\./, "")
+    .split("/")[0]
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")}.webp`;
 
 export const portfolioProjects: PortfolioProject[] = [
   {

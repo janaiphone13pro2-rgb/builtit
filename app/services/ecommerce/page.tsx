@@ -1,6 +1,6 @@
-import { Metadata } from "next";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AnimatedText, FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
 import { TiltCard } from "@/components/ui/TiltCard";
@@ -18,11 +18,33 @@ import {
   Rocket,
   ArrowRight,
 } from "lucide-react";
+import {
+  createBreadcrumbSchema,
+  createPageMetadata,
+  createServiceSchema,
+} from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "E-commerce for Local Brands | BuiltIt",
-  description: "Full storefronts for Egyptian brands ready to sell online. Mobile-first with local payment integration.",
-};
+const pageTitle = "E-commerce Development | BuiltIt";
+const pageDescription =
+  "E-commerce storefronts and connected order-management experiences designed around products, customers, payments, and day-to-day operations.";
+
+export const metadata = createPageMetadata({
+  title: pageTitle,
+  description: pageDescription,
+  path: "/services/ecommerce",
+});
+
+const serviceSchema = createServiceSchema({
+  name: "E-commerce Development",
+  description: pageDescription,
+  path: "/services/ecommerce",
+  serviceType: "E-commerce development",
+});
+
+const breadcrumbSchema = createBreadcrumbSchema([
+  { name: "Home", path: "/" },
+  { name: "E-commerce development", path: "/services/ecommerce" },
+]);
 
 const features = [
   { icon: ShoppingCart, title: "Product Catalog", description: "Organized categories, filters, and search for easy browsing." },
@@ -62,6 +84,8 @@ const stats = [
 export default function EcommerceServicePage() {
   return (
     <>
+      <JsonLd data={serviceSchema} />
+      <JsonLd data={breadcrumbSchema} />
       <CustomCursor />
       <Navbar />
       <main>

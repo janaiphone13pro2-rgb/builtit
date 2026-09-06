@@ -95,11 +95,11 @@ export function ProjectCard({
             <Image
               src={project.image}
               alt={`${project.name} website screenshot`}
-              fill
-              unoptimized
+              width={1200}
+              height={750}
               priority={priority}
               sizes={imageSizes}
-              className="object-cover object-top"
+              className="h-full w-full object-cover object-top"
               onError={() => setImageFailed(true)}
             />
           )}
