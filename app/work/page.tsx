@@ -1,112 +1,150 @@
-import { Metadata } from "next";
-import Image from "next/image";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ExternalLink } from "lucide-react";
-import { portfolioProjects } from "@/lib/landing-data";
+import { ArrowRight } from "lucide-react";
+import { Footer } from "@/components/layout/Footer";
+import { Navbar } from "@/components/layout/Navbar";
+import { ProjectCard } from "@/components/work/ProjectCard";
+import { portfolioProjects, type PortfolioProject } from "@/lib/landing-data";
 
 export const metadata: Metadata = {
   title: "Work | BuiltIt",
-  description: "Live portfolios, Shopify stores, WordPress sites, and custom-coded websites by BuiltIt.",
+  description:
+    "Explore Shopify stores, WordPress websites, and custom-built websites by BuiltIt.",
 };
+
+type ProjectGroup = {
+  id: string;
+  category: PortfolioProject["category"];
+  eyebrow: string;
+  title: string;
+  description: string;
+};
+
+const projectGroups: ProjectGroup[] = [
+  {
+    id: "shopify",
+    category: "Shopify",
+    eyebrow: "E-commerce",
+    title: "Shopify stores",
+    description:
+      "Online stores built around clear product discovery and a straightforward path to checkout.",
+  },
+  {
+    id: "wordpress",
+    category: "WordPress",
+    eyebrow: "Business websites",
+    title: "WordPress websites",
+    description:
+      "Flexible marketing and service websites that teams can update through a familiar CMS.",
+  },
+  {
+    id: "custom-coded",
+    category: "Custom Coded",
+    eyebrow: "Custom development",
+    title: "Custom-built websites",
+    description:
+      "Tailored brand and portfolio websites built for projects that need a more specific approach.",
+  },
+];
 
 export default function WorkPage() {
   return (
     <>
-      <CustomCursor />
       <Navbar />
-      <main>
-        {/* Hero */}
-        <section className="pt-32 pb-20 lg:pt-40 lg:pb-32">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <p className="text-sm font-medium tracking-[0.2em] text-lime uppercase mb-4">
-                Our Work
+      <main id="main-content">
+        <section className="border-b border-white/10 pb-16 pt-32 lg:pb-20 lg:pt-40">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-4xl">
+              <p className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-lime">
+                Our work
               </p>
-              <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wide mb-6">
-                Selected<br />
-                <span className="text-white/50">Projects.</span>
+              <h1 className="text-balance text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl">
+                Websites built for real businesses
               </h1>
-              <p className="text-lg text-white/70 max-w-xl">
-                A selection of live portfolios, stores, WordPress sites, and custom-coded websites we&apos;ve built.
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
+                Explore {portfolioProjects.length} Shopify stores, WordPress websites, and
+                custom-built sites across retail, services, beauty, property, and more.
               </p>
             </div>
-          </div>
-        </section>
 
-        {/* Projects Grid */}
-        <section className="py-12 lg:py-20">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.1}>
-              {portfolioProjects.map((project) => (
-                <StaggerItem key={project.name}>
+            <nav aria-label="Project categories" className="mt-10 flex flex-wrap gap-3">
+              {projectGroups.map((group) => {
+                const count = portfolioProjects.filter(
+                  (project) => project.category === group.category,
+                ).length;
+
+                return (
                   <a
-                    href={project.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block"
+                    key={group.id}
+                    href={`#${group.id}`}
+                    className="inline-flex min-h-11 items-center rounded-md border border-white/20 px-4 py-2 text-sm font-bold text-white transition-colors hover:border-lime hover:text-lime focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden rounded bg-card border border-[#ffffff15] mb-4">
-                      <Image
-                        src={project.image}
-                        alt={`${project.name} website screenshot`}
-                        fill
-                        unoptimized
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-0 left-0 right-0 p-4">
-                          <p className="text-sm text-white/80 line-clamp-2">{project.description}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="font-bebas text-2xl tracking-wide">{project.name}</h3>
-                        <p className="text-sm text-white/50">{project.category}</p>
-                      </div>
-                      <ExternalLink className="mt-1 h-4 w-4 shrink-0 text-lime opacity-0 transition-opacity group-hover:opacity-100" />
-                    </div>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="text-xs text-white/60 px-2 py-1 bg-white/5 rounded">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    {group.title} ({count})
                   </a>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                );
+              })}
+            </nav>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="py-24 lg:py-32 border-t border-white/[0.08]">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-            <FadeUp>
-              <h2 className="font-bebas text-5xl md:text-6xl lg:text-7xl tracking-wide mb-6">
-                Want to See Your<br />Project Here?
-              </h2>
-            </FadeUp>
-            <FadeUp delay={0.1}>
-              <p className="text-lg text-white/70 mb-8 max-w-xl mx-auto">
-                Let&apos;s discuss how we can build something exceptional together.
-              </p>
-            </FadeUp>
-            <FadeUp delay={0.2}>
-              <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
-                  Start a Project
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </MagneticButton>
-            </FadeUp>
+        {projectGroups.map((group) => {
+          const projects = portfolioProjects.filter(
+            (project) => project.category === group.category,
+          );
+
+          return (
+            <section
+              key={group.id}
+              id={group.id}
+              aria-labelledby={`${group.id}-heading`}
+              className="scroll-mt-24 border-b border-white/10 py-16 lg:py-24"
+            >
+              <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mb-10 grid gap-4 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+                  <div>
+                    <p className="mb-2 text-sm font-bold uppercase tracking-[0.14em] text-lime">
+                      {group.eyebrow}
+                    </p>
+                    <h2
+                      id={`${group.id}-heading`}
+                      className="text-3xl font-black tracking-tight text-white md:text-4xl"
+                    >
+                      {group.title}
+                      <span className="ml-3 text-lg font-semibold text-white/45">
+                        {projects.length}
+                      </span>
+                    </h2>
+                  </div>
+                  <p className="max-w-xl text-base leading-7 text-white/65 lg:justify-self-end">
+                    {group.description}
+                  </p>
+                </div>
+
+                <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                  {projects.map((project) => (
+                    <ProjectCard key={project.name} project={project} />
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        })}
+
+        <section className="py-20 lg:py-28">
+          <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
+            <h2 className="text-balance text-4xl font-black tracking-tight text-white md:text-5xl">
+              Have a project in mind?
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg leading-8 text-white/70">
+              Tell us what you need and we&apos;ll help you choose a practical way to build it.
+            </p>
+            <Link
+              href="/intake"
+              className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-lime px-7 py-3 text-sm font-black uppercase tracking-wide text-slate-950 transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime"
+            >
+              Start a project
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+            </Link>
           </div>
         </section>
       </main>

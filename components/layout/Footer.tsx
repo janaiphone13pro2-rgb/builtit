@@ -5,11 +5,11 @@ import { Github, Instagram, Linkedin } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 
 const footerLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Ownership", href: "#ownership" },
-  { label: "Work", href: "#work" },
-  { label: "ERP", href: "#erp" },
-  { label: "Contact", href: "#booking" },
+  { label: "Services", href: "/#services" },
+  { label: "Ownership", href: "/#ownership" },
+  { label: "Work", href: "/work" },
+  { label: "ERP", href: "/#erp" },
+  { label: "Contact", href: "/#booking" },
 ];
 
 const socialLinks = [

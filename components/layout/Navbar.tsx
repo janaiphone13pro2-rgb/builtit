@@ -8,11 +8,11 @@ import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "Ownership", href: "#ownership" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "ERP", href: "#erp" },
+  { label: "Services", href: "/#services" },
+  { label: "Ownership", href: "/#ownership" },
+  { label: "Work", href: "/work" },
+  { label: "Process", href: "/#process" },
+  { label: "ERP", href: "/#erp" },
 ];
 
 export function Navbar() {
@@ -30,6 +30,12 @@ export function Navbar() {
 
   return (
     <>
+      <a
+        href="#main-content"
+        className="fixed left-4 top-4 z-[60] -translate-y-24 rounded-md bg-lime px-4 py-3 font-bold text-slate-950 transition-transform focus:translate-y-0"
+      >
+        Skip to content
+      </a>
       <motion.header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
@@ -57,7 +63,7 @@ export function Navbar() {
 
             <div className="hidden lg:block">
               <Link
-                href="#booking"
+                href="/#booking"
                 className="inline-flex min-h-11 items-center justify-center rounded-md bg-lime px-5 py-2.5 text-sm font-black uppercase tracking-wide text-slate-950 transition hover:bg-lime/90"
               >
                 Start a Project
@@ -66,8 +72,10 @@ export function Navbar() {
 
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-white"
+              className="p-2 text-white lg:hidden"
               aria-label="Toggle menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -79,6 +87,7 @@ export function Navbar() {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-navigation"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -110,7 +119,7 @@ export function Navbar() {
                 transition={{ delay: 0.4 }}
               >
                 <Link
-                  href="#booking"
+                  href="/#booking"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="inline-flex min-h-12 items-center justify-center rounded-md bg-lime px-8 py-3 text-base font-black uppercase tracking-wide text-slate-950"
                 >
