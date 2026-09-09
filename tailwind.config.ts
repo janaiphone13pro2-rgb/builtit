@@ -8,13 +8,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#05060D",
-        foreground: "#FFFFFF",
+        background: "#05070A",
+        foreground: "#F7FAF8",
         lime: "#4EF2AD",
         mint: "#4EF2AD",
-        card: "rgba(255, 255, 255, 0.04)",
-        "card-border": "rgba(255, 255, 255, 0.08)",
-        "muted-foreground": "rgba(255, 255, 255, 0.6)",
+        card: "rgba(255, 255, 255, 0.035)",
+        "card-border": "rgba(255, 255, 255, 0.10)",
+        "muted-foreground": "rgba(247, 250, 248, 0.64)",
       },
       fontFamily: {
         bebas: ["var(--font-bebas)"],

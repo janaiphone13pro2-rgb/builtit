@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
+import { Logo } from "@/components/ui/Logo";
 import { createPageMetadata } from "@/lib/site";
 
 export const metadata = createPageMetadata({
@@ -12,12 +12,12 @@ export const metadata = createPageMetadata({
 });
 
 const colors = [
-  { name: "Background", hex: "#0A0A0A", usage: "Page backgrounds, dark UI" },
-  { name: "Foreground", hex: "#FFFFFF", usage: "Text, icons" },
+  { name: "Background", hex: "#05070A", usage: "Page backgrounds, drafting canvas" },
+  { name: "Foreground", hex: "#F7FAF8", usage: "Text, icons" },
   { name: "Mint", hex: "#4EF2AD", usage: "Primary accent, CTAs, highlights" },
   { name: "Mint Glow", hex: "rgba(78,242,173,0.18)", usage: "Soft highlights and hover states" },
-  { name: "Card", hex: "rgba(255,255,255,0.03)", usage: "Card backgrounds" },
-  { name: "Border", hex: "rgba(255,255,255,0.08)", usage: "Subtle borders" },
+  { name: "Card", hex: "rgba(255,255,255,0.035)", usage: "Module backgrounds" },
+  { name: "Border", hex: "rgba(255,255,255,0.10)", usage: "Assembly lines and borders" },
 ];
 
 const typography = [
@@ -37,17 +37,14 @@ const donts = [
 export default function BrandPage() {
   return (
     <>
-      <CustomCursor />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero */}
-        <section className="pt-32 pb-20 lg:pt-40 lg:pb-32">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="blueprint-grid border-b border-white/10 bg-[#05070a] pb-20 pt-32 lg:pb-28 lg:pt-40">
+          <div className="site-shell">
             <div className="max-w-3xl">
-              <p className="text-sm font-medium tracking-[0.2em] text-lime uppercase mb-4">
-                Brand Identity
-              </p>
-              <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wide mb-6">
+              <p className="section-kicker">Brand system / 2026</p>
+              <h1 className="display-heading mb-6 mt-5 text-6xl text-white md:text-7xl lg:text-8xl">
                 BuiltIt.<br />
                 <span className="text-white/50">Brand Guidelines.</span>
               </h1>
@@ -68,8 +65,8 @@ export default function BrandPage() {
               <FadeUp delay={0.1}>
                 <h2 className="font-bebas text-5xl md:text-6xl tracking-wide mb-4">Built<span className="text-lime">It.</span></h2>
                 <p className="text-white/60 max-w-lg mx-auto">
-                  The double L represents building blocks — layers of work stacking together. 
-                  The mint &quot;It&quot; emphasizes that we build <em>it</em> — whatever you need.
+                  The mint &quot;It.&quot; completes the promise: we build it. The period doubles as a
+                  live status node across grids, connectors, and finished modules.
                 </p>
               </FadeUp>
             </div>
@@ -78,25 +75,19 @@ export default function BrandPage() {
             <StaggerContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.15}>
               <StaggerItem>
                 <div className="aspect-square bg-[#0A0A0A] border border-[#ffffff15] rounded flex items-center justify-center">
-                  <span className="font-bebas text-6xl tracking-wide">
-                    Built<span className="text-lime">It.</span>
-                  </span>
+                  <Logo href={null} size="xl" />
                 </div>
                 <p className="text-center text-sm text-white/60 mt-3">Primary (Dark BG)</p>
               </StaggerItem>
               <StaggerItem>
                 <div className="aspect-square bg-white border border-[#ffffff15] rounded flex items-center justify-center">
-                  <span className="font-bebas text-6xl tracking-wide text-black">
-                    Built<span className="text-[#4EF2AD]">It.</span>
-                  </span>
+                  <Logo href={null} size="xl" variant="reversed" />
                 </div>
                 <p className="text-center text-sm text-white/60 mt-3">Reversed (Light BG)</p>
               </StaggerItem>
               <StaggerItem>
                 <div className="aspect-square bg-[#0A0A0A] border border-[#ffffff15] rounded flex items-center justify-center">
-                  <span className="font-bebas text-6xl tracking-wide text-white">
-                    BuiltIt<span className="text-white">.</span>
-                  </span>
+                  <Logo href={null} size="xl" variant="mono-white" />
                 </div>
                 <p className="text-center text-sm text-white/60 mt-3">Monochrome</p>
               </StaggerItem>

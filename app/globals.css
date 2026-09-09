@@ -3,12 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --background: #05060D;
-  --foreground: #FFFFFF;
-  --lime: #4EF2AD;
-  --mint: #4EF2AD;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-border: rgba(255, 255, 255, 0.08);
+  --background: #05070a;
+  --foreground: #f7faf8;
+  --lime: #4ef2ad;
+  --mint: #4ef2ad;
+  --ink: #05070a;
+  --surface: #090d11;
+  --surface-raised: #0d1217;
+  --sand: #d8d2c4;
+  --muted: rgba(247, 250, 248, 0.64);
+  --card: rgba(255, 255, 255, 0.035);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
@@ -28,6 +34,10 @@
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
+    overflow-x: clip;
+    background-image:
+      radial-gradient(circle at 12% 4%, rgba(78, 242, 173, 0.08), transparent 22rem),
+      linear-gradient(180deg, #05070a 0%, #070a0e 48%, #05070a 100%);
   }
 
   ::selection {
@@ -37,6 +47,140 @@
 }
 
 @layer components {
+  .site-shell {
+    width: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+  }
+
+  .section-space {
+    padding-block: clamp(5rem, 9vw, 8rem);
+  }
+
+  .section-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: var(--lime);
+  }
+
+  .section-kicker::before {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    flex: none;
+    border-radius: 999px;
+    background: var(--lime);
+    box-shadow: 0 0 0 0.25rem rgba(78, 242, 173, 0.1), 0 0 1rem rgba(78, 242, 173, 0.45);
+  }
+
+  .display-heading {
+    font-family: var(--font-bebas), sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+    line-height: 0.94;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .blueprint-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+  }
+
+  .micro-grid {
+    background-image:
+      linear-gradient(rgba(78, 242, 173, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 242, 173, 0.05) 1px, transparent 1px);
+    background-size: 1.5rem 1.5rem;
+  }
+
+  .build-frame {
+    position: relative;
+    border: 1px solid var(--card-border);
+    border-radius: 0.25rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018));
+  }
+
+  .build-frame::before,
+  .build-frame::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    width: 0.65rem;
+    height: 0.65rem;
+    pointer-events: none;
+  }
+
+  .build-frame::before {
+    top: -1px;
+    left: -1px;
+    border-top: 1px solid var(--lime);
+    border-left: 1px solid var(--lime);
+  }
+
+  .build-frame::after {
+    right: -1px;
+    bottom: -1px;
+    border-right: 1px solid var(--lime);
+    border-bottom: 1px solid var(--lime);
+  }
+
+  .primary-cta,
+  .secondary-cta {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    border-radius: 0.25rem;
+    padding: 0.75rem 1.35rem;
+    font-size: 0.875rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    line-height: 1.25rem;
+    text-transform: uppercase;
+    transition: transform 240ms var(--ease-out), background-color 240ms ease, border-color 240ms ease, color 240ms ease;
+  }
+
+  .primary-cta {
+    background: var(--lime);
+    color: #04100b;
+    box-shadow: 0 0 0 1px rgba(78, 242, 173, 0.25), 0 0 2rem rgba(78, 242, 173, 0.12);
+  }
+
+  .secondary-cta {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.025);
+    color: white;
+  }
+
+  .primary-cta:hover,
+  .secondary-cta:hover {
+    transform: translateY(-2px);
+  }
+
+  .primary-cta:hover {
+    background: white;
+  }
+
+  .secondary-cta:hover {
+    border-color: rgba(78, 242, 173, 0.7);
+    color: var(--lime);
+  }
+
+  .primary-cta:active,
+  .secondary-cta:active {
+    transform: translateY(0);
+  }
+
   .grain-overlay {
     position: fixed;
     top: -50%;
@@ -46,7 +190,7 @@
     width: 200%;
     height: 200%;
     background: transparent url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E") repeat;
-    opacity: 0.03;
+    opacity: 0.022;
     pointer-events: none;
     z-index: 9999;
     animation: grain 8s steps(10) infinite;
@@ -68,6 +212,11 @@
 
     .grain-overlay {
       animation: none;
+    }
+
+    .primary-cta:hover,
+    .secondary-cta:hover {
+      transform: none;
     }
   }
 }
@@ -97,6 +246,45 @@
   70% { transform: translate(0%, 15%); }
   80% { transform: translate(3%, 35%); }
   90% { transform: translate(-10%, 10%); }
+}
+
+@keyframes statusPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(78, 242, 173, 0.42); }
+  50% { box-shadow: 0 0 0 0.45rem rgba(78, 242, 173, 0); }
+}
+
+@keyframes blueprintScan {
+  0% { transform: translateY(-110%); opacity: 0; }
+  15% { opacity: 0.65; }
+  75% { opacity: 0.2; }
+  100% { transform: translateY(780%); opacity: 0; }
+}
+
+@keyframes softFloat {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -0.45rem, 0); }
+}
+
+.status-pulse {
+  animation: statusPulse 2.4s ease-in-out infinite;
+}
+
+.blueprint-scan {
+  animation: blueprintScan 6s ease-in-out infinite;
+}
+
+.soft-float {
+  animation: softFloat 5s ease-in-out infinite;
+}
+
+@media (max-width: 639px) {
+  .site-shell {
+    width: min(100% - 1.25rem, 80rem);
+  }
+
+  .blueprint-grid {
+    background-size: 2.5rem 2.5rem;
+  }
 }
 
 /* Custom scrollbar */

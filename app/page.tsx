@@ -8,7 +8,6 @@ import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 import { ERPCRMSpotlight } from "@/components/home/ERPCRMSpotlight";
 import { ImpactNumbers } from "@/components/home/ImpactNumbers";
-import { Testimonials } from "@/components/home/Testimonials";
 import { BookingContact } from "@/components/home/BookingContact";
 import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton";
 
@@ -16,16 +15,15 @@ export default function HomePage() {
   return (
     <>
       <Navbar />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <TrustBar />
+        <FeaturedWork />
         <Services />
         <OneTimePaymentUSP />
-        <FeaturedWork />
-        <ProcessTimeline />
         <ERPCRMSpotlight />
+        <ProcessTimeline />
         <ImpactNumbers />
-        <Testimonials />
         <BookingContact />
       </main>
       <Footer />

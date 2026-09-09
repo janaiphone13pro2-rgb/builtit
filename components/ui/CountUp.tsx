@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
 interface CountUpProps {
   end: number;
@@ -18,48 +18,63 @@ export function CountUp({
   prefix = "",
   className = "",
 }: CountUpProps) {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [count, setCount] = useState(end);
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const frameRef = useRef<number | null>(null);
   const hasAnimated = useRef(false);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const reduceMotion = useReducedMotion();
+  const decimalPlaces = String(end).includes(".") ? String(end).split(".")[1].length : 0;
 
   useEffect(() => {
-    if (isInView && !hasAnimated.current) {
-      hasAnimated.current = true;
-      const startTime = performance.now();
-      const startValue = 0;
-
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / (duration * 1000), 1);
-
-        // Ease out cubic
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-        const currentValue = Math.floor(startValue + (end - startValue) * easeOut);
-
-        setCount(currentValue);
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
-
-      requestAnimationFrame(animate);
+    if (!isInView || hasAnimated.current) {
+      return;
     }
-  }, [isInView, end, duration]);
+
+    hasAnimated.current = true;
+
+    if (reduceMotion) {
+      setCount(end);
+      return;
+    }
+
+    const startTime = performance.now();
+    setCount(0);
+
+    const animate = (currentTime: number) => {
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Number((end * eased).toFixed(decimalPlaces)));
+
+      if (progress < 1) {
+        frameRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    frameRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (frameRef.current !== null) {
+        cancelAnimationFrame(frameRef.current);
+      }
+    };
+  }, [decimalPlaces, duration, end, isInView, reduceMotion]);
 
   return (
     <motion.span
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.45 }}
+      aria-label={`${prefix}${end.toFixed(decimalPlaces)}${suffix}`}
     >
-      {prefix}
-      {count}
-      {suffix}
+      <span aria-hidden="true">
+        {prefix}
+        {count.toFixed(decimalPlaces)}
+        {suffix}
+      </span>
     </motion.span>
   );
 }

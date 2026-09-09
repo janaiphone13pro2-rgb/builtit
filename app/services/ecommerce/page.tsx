@@ -1,11 +1,9 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AnimatedText, FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { CountUp } from "@/components/ui/CountUp";
 import Link from "next/link";
 import {
   ShoppingCart,
@@ -48,8 +46,8 @@ const breadcrumbSchema = createBreadcrumbSchema([
 
 const features = [
   { icon: ShoppingCart, title: "Product Catalog", description: "Organized categories, filters, and search for easy browsing." },
-  { icon: CreditCard, title: "Local Payments", description: "Instapay, Vodafone Cash, and COD ready out of the box." },
-  { icon: Package, title: "Order Management", description: "Track orders, inventory, and customer data in one dashboard." },
+  { icon: CreditCard, title: "Local Payments", description: "Suitable local and card-payment options scoped for the selected platform." },
+  { icon: Package, title: "Order Management", description: "An agreed workflow for orders, inventory, and customer information." },
   { icon: Smartphone, title: "Mobile-First", description: "Designed for Egyptian mobile shoppers with fast loading." },
   { icon: Tag, title: "Discount Engine", description: "Create promo codes, flash sales, and bundle deals." },
   { icon: BarChart3, title: "Sales Analytics", description: "Understand what sells with built-in reporting." },
@@ -69,16 +67,11 @@ const steps = [
 ];
 
 const faqs = [
-  { q: "How long to launch an e-commerce store?", a: "10–18 days depending on product count and payment integration complexity." },
-  { q: "Which payment methods are supported?", a: "Instapay, Vodafone Cash, Etisalat Cash, COD, and credit cards through Paymob or similar." },
-  { q: "Can I manage inventory myself?", a: "Yes. You get a dashboard to add, edit, and track products and orders." },
-  { q: "Do you handle shipping integration?", a: "We integrate with local couriers (Bosta, Aramex Egypt) for automated shipping labels." },
-  { q: "Is there a monthly fee?", a: "No monthly fees from us. You only pay for hosting ( ~$10/month) and payment gateway fees." },
-];
-
-const stats = [
-  { value: 15, suffix: "+", label: "Stores Launched" },
-  { value: 2.5, suffix: "x", label: "Avg. Sales Increase" },
+  { q: "How long does an e-commerce store take?", a: "Timing depends on the product catalogue, content readiness, platform, integrations, and review rounds. We confirm a launch plan with the scope." },
+  { q: "Which payment methods are supported?", a: "We scope suitable local and card-payment options for the selected platform. Availability and approval remain subject to the chosen provider." },
+  { q: "Can I manage inventory myself?", a: "Yes, when inventory management is included. We configure the agreed workflow and document how your team uses it." },
+  { q: "Do you handle shipping integration?", a: "We can scope integrations with supported couriers or create a practical manual workflow when an API is unavailable." },
+  { q: "Is there a monthly fee?", a: "BuiltIt does not add a compulsory licence to custom-built work. Hosting, domains, platforms, apps, gateways, and other third-party services may charge their own fees." },
 ];
 
 export default function EcommerceServicePage() {
@@ -86,15 +79,14 @@ export default function EcommerceServicePage() {
     <>
       <JsonLd data={serviceSchema} />
       <JsonLd data={breadcrumbSchema} />
-      <CustomCursor />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero */}
-        <section className="pt-32 pb-20 lg:pt-40 lg:pb-32">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="blueprint-grid relative overflow-hidden border-b border-white/10 bg-[#05070a] pb-20 pt-32 lg:pb-28 lg:pt-40">
+          <div className="site-shell relative">
             <div className="max-w-3xl">
               <AnimatedText text="LOCAL BRAND STORES" className="text-sm font-medium tracking-[0.2em] text-lime block mb-4" />
-              <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wide mb-6">
+              <h1 className="display-heading mb-6 text-6xl text-white md:text-7xl lg:text-8xl">
                 Sell Online.<br />
                 <span className="text-white/50">Anywhere in Egypt.</span>
               </h1>
@@ -102,27 +94,11 @@ export default function EcommerceServicePage() {
                 Full e-commerce storefronts built for Egyptian brands. Mobile-first design with local payment methods your customers already use.
               </p>
               <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
+                <Link href="/intake" className="primary-cta group">
                   Start This Project
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </MagneticButton>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="py-16 border-y border-white/[0.08]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-2 gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-bebas text-5xl md:text-6xl text-lime mb-2">
-                    <CountUp end={stat.value} suffix={stat.suffix} duration={2} />
-                  </div>
-                  <p className="text-sm text-white/60 uppercase tracking-wide">{stat.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -170,7 +146,7 @@ export default function EcommerceServicePage() {
             <StaggerContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.15}>
               {personas.map((persona) => (
                 <StaggerItem key={persona.title}>
-                  <div className="p-6 bg-card border border-[#ffffff15] rounded">
+                  <div className="h-full p-6 bg-card border border-[#ffffff15] rounded">
                     <h3 className="font-bebas text-3xl tracking-wide mb-3">{persona.title}</h3>
                     <p className="text-sm text-white/60">{persona.description}</p>
                   </div>
@@ -247,12 +223,12 @@ export default function EcommerceServicePage() {
             </FadeUp>
             <FadeUp delay={0.1}>
               <p className="text-lg text-white/70 mb-8 max-w-xl mx-auto">
-                Let&apos;s build a store that turns browsers into buyers.
+                Let&apos;s build a store that makes discovery and checkout feel effortless.
               </p>
             </FadeUp>
             <FadeUp delay={0.2}>
               <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
+                <Link href="/intake" className="primary-cta group">
                   Start Your Store
                   <ArrowRight className="w-5 h-5" />
                 </Link>

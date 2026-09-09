@@ -51,15 +51,14 @@ export default function WorkPage() {
   return (
     <>
       <Navbar />
-      <main id="main-content">
-        <section className="border-b border-white/10 pb-16 pt-32 lg:pb-20 lg:pt-40">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <main id="main-content" tabIndex={-1}>
+        <section className="blueprint-grid relative overflow-hidden border-b border-white/10 bg-[#05070a] pb-16 pt-32 lg:pb-20 lg:pt-40">
+          <div className="pointer-events-none absolute -left-32 top-0 h-96 w-96 rounded-full bg-lime/[0.08] blur-[110px]" aria-hidden="true" />
+          <div className="site-shell relative">
             <div className="max-w-4xl">
-              <p className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-lime">
-                Our work
-              </p>
-              <h1 className="text-balance text-5xl font-black tracking-tight text-white md:text-6xl lg:text-7xl">
-                Websites built for real businesses
+              <p className="section-kicker">Project archive / {portfolioProjects.length}</p>
+              <h1 className="display-heading mt-5 text-6xl text-white sm:text-7xl lg:text-8xl">
+                Websites built for real businesses<span className="text-lime">.</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
                 Explore {portfolioProjects.length} Shopify stores, WordPress websites, and
@@ -67,7 +66,7 @@ export default function WorkPage() {
               </p>
             </div>
 
-            <nav aria-label="Project categories" className="mt-10 flex flex-wrap gap-3">
+            <nav aria-label="Project categories" className="mt-10 flex flex-wrap gap-2">
               {projectGroups.map((group) => {
                 const count = portfolioProjects.filter(
                   (project) => project.category === group.category,
@@ -77,7 +76,7 @@ export default function WorkPage() {
                   <a
                     key={group.id}
                     href={`#${group.id}`}
-                    className="inline-flex min-h-11 items-center rounded-md border border-white/20 px-4 py-2 text-sm font-bold text-white transition-colors hover:border-lime hover:text-lime focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime"
+                    className="inline-flex min-h-11 items-center rounded-sm border border-white/15 bg-[#070b0e]/80 px-4 py-2 font-mono text-[0.7rem] font-bold uppercase tracking-[0.1em] text-white/65 transition-colors hover:border-lime/50 hover:text-lime focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime"
                   >
                     {group.title} ({count})
                   </a>
@@ -97,20 +96,18 @@ export default function WorkPage() {
               key={group.id}
               id={group.id}
               aria-labelledby={`${group.id}-heading`}
-              className="scroll-mt-24 border-b border-white/10 py-16 lg:py-24"
+              className="scroll-mt-24 border-b border-white/10 py-16 odd:bg-[#070a0d] lg:py-24"
             >
-              <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                <div className="mb-10 grid gap-4 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+              <div className="site-shell">
+                <div className="mb-10 grid gap-4 border-b border-white/10 pb-7 lg:grid-cols-[1fr_0.8fr] lg:items-end">
                   <div>
-                    <p className="mb-2 text-sm font-bold uppercase tracking-[0.14em] text-lime">
-                      {group.eyebrow}
-                    </p>
+                    <p className="section-kicker">{group.eyebrow}</p>
                     <h2
                       id={`${group.id}-heading`}
-                      className="text-3xl font-black tracking-tight text-white md:text-4xl"
+                      className="display-heading mt-3 text-4xl text-white md:text-5xl"
                     >
                       {group.title}
-                      <span className="ml-3 text-lg font-semibold text-white/45">
+                      <span className="ml-3 font-mono text-base font-semibold text-lime/70">
                         {projects.length}
                       </span>
                     </h2>
@@ -130,20 +127,21 @@ export default function WorkPage() {
           );
         })}
 
-        <section className="py-20 lg:py-28">
-          <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
-            <h2 className="text-balance text-4xl font-black tracking-tight text-white md:text-5xl">
-              Have a project in mind?
+        <section className="blueprint-grid relative overflow-hidden bg-[#08100c] py-20 lg:py-28">
+          <div className="site-shell relative max-w-4xl text-center">
+            <p className="section-kicker">Next build</p>
+            <h2 className="display-heading mt-4 text-5xl text-white md:text-6xl">
+              Have a project in mind<span className="text-lime">?</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-8 text-white/70">
               Tell us what you need and we&apos;ll help you choose a practical way to build it.
             </p>
             <Link
               href="/intake"
-              className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-md bg-lime px-7 py-3 text-sm font-black uppercase tracking-wide text-slate-950 transition-colors hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-lime"
+              className="primary-cta group mt-8"
             >
               Start a project
-              <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </Link>
           </div>
         </section>

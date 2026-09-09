@@ -27,7 +27,7 @@ export function LegalPage({
   return (
     <>
       <Navbar />
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <article className="pb-20 pt-28 lg:pb-28 lg:pt-36">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <nav aria-label="Breadcrumb" className="mb-10 text-sm text-white/65">

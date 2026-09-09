@@ -6,7 +6,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function NotFoundPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center px-6">
+    <main id="main-content" tabIndex={-1} className="min-h-screen flex items-center justify-center px-6">
       <div className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,6 +29,6 @@ export default function NotFoundPage() {
           </Link>
         </motion.div>
       </div>
-    </div>
+    </main>
   );
 }

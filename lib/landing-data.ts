@@ -41,13 +41,13 @@ export const services = [
     icon: ShoppingBag,
     title: "E-Commerce",
     tag: "Shopify + Custom",
-    description: "High-converting stores with checkout, products, analytics, and ownership.",
+    description: "Product-led stores with clear browsing, checkout, and practical order workflows.",
   },
   {
     icon: Code2,
     title: "Web Applications",
     tag: "React / Next.js",
-    description: "Secure portals, SaaS dashboards, and business tools built for scale.",
+    description: "Portals, dashboards, and business tools designed around clear user flows.",
   },
   {
     icon: Smartphone,
@@ -59,7 +59,7 @@ export const services = [
     icon: BriefcaseBusiness,
     title: "ERP & CRM Systems",
     tag: "Enterprise",
-    description: "Custom business systems without the endless monthly license fees.",
+    description: "Custom business systems shaped around the workflows and handover you agree.",
   },
   {
     icon: PanelsTopLeft,

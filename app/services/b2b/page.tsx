@@ -1,11 +1,9 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AnimatedText, FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { CountUp } from "@/components/ui/CountUp";
 import Link from "next/link";
 import {
   Palette,
@@ -69,16 +67,11 @@ const steps = [
 ];
 
 const faqs = [
-  { q: "How long does a portfolio take to build?", a: "Typically 7–14 days from kickoff to launch, depending on content readiness." },
-  { q: "Can I update the content myself?", a: "Yes. We integrate a CMS that lets you edit text, images, and add new projects without touching code." },
+  { q: "How long does a portfolio take to build?", a: "Timing depends on the agreed scope, review rounds, and how ready the content is. We confirm a realistic launch plan before work starts." },
+  { q: "Can I update the content myself?", a: "Yes, when content editing is part of the agreed scope. We can configure a suitable CMS and document the handover." },
   { q: "Do you provide the domain and hosting?", a: "We can guide you on purchasing, or handle it for you with transparent pricing." },
-  { q: "Is the design truly custom?", a: "Absolutely. No templates. Every pixel is designed for your specific brand and goals." },
-  { q: "What if I need changes after launch?", a: "We offer 30 days of minor tweaks included. Beyond that, we have affordable maintenance packages." },
-];
-
-const stats = [
-  { value: 20, suffix: "+", label: "B2B Portfolios Built" },
-  { value: 95, suffix: "%", label: "Client Retention" },
+  { q: "Is the design custom?", a: "The visual direction is shaped around your brand, goals, content, and agreed scope. Any platform or licensed foundation used is identified clearly." },
+  { q: "What if I need changes after launch?", a: "The proposal defines the launch-support window. We can scope later improvements separately when you need them." },
 ];
 
 export default function B2BServicePage() {
@@ -86,43 +79,26 @@ export default function B2BServicePage() {
     <>
       <JsonLd data={serviceSchema} />
       <JsonLd data={breadcrumbSchema} />
-      <CustomCursor />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero */}
-        <section className="pt-32 pb-20 lg:pt-40 lg:pb-32">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="blueprint-grid relative overflow-hidden border-b border-white/10 bg-[#05070a] pb-20 pt-32 lg:pb-28 lg:pt-40">
+          <div className="site-shell relative">
             <div className="max-w-3xl">
               <AnimatedText text="COMPANY PORTFOLIOS" className="text-sm font-medium tracking-[0.2em] text-lime block mb-4" />
-              <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wide mb-6">
+              <h1 className="display-heading mb-6 text-6xl text-white md:text-7xl lg:text-8xl">
                 Impress Before<br />
                 <span className="text-white/50">The First Meeting.</span>
               </h1>
               <p className="text-lg text-white/70 mb-8 max-w-xl">
-                Professional portfolios designed to convert prospects into clients. Built for businesses that understand first impressions matter.
+                Professional portfolios designed to explain your value clearly and support confident first conversations.
               </p>
               <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
+                <Link href="/intake" className="primary-cta group">
                   Start This Project
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </MagneticButton>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="py-16 border-y border-white/[0.08]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-2 gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-bebas text-5xl md:text-6xl text-lime mb-2">
-                    <CountUp end={stat.value} suffix={stat.suffix} duration={2} />
-                  </div>
-                  <p className="text-sm text-white/60 uppercase tracking-wide">{stat.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -170,7 +146,7 @@ export default function B2BServicePage() {
             <StaggerContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.15}>
               {personas.map((persona) => (
                 <StaggerItem key={persona.title}>
-                  <div className="p-6 bg-card border border-[#ffffff15] rounded">
+                  <div className="h-full p-6 bg-card border border-[#ffffff15] rounded">
                     <h3 className="font-bebas text-3xl tracking-wide mb-3">{persona.title}</h3>
                     <p className="text-sm text-white/60">{persona.description}</p>
                   </div>
@@ -247,12 +223,12 @@ export default function B2BServicePage() {
             </FadeUp>
             <FadeUp delay={0.1}>
               <p className="text-lg text-white/70 mb-8 max-w-xl mx-auto">
-                Let&apos;s build a portfolio that converts visitors into clients.
+                Let&apos;s build a portfolio that supports stronger client conversations.
               </p>
             </FadeUp>
             <FadeUp delay={0.2}>
               <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
+                <Link href="/intake" className="primary-cta group">
                   Start Your Portfolio
                   <ArrowRight className="w-5 h-5" />
                 </Link>

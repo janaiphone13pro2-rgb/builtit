@@ -7,7 +7,7 @@ export default function IntakePage() {
   return (
     <>
       <Navbar />
-      <main id="main-content" className="min-h-screen bg-[#080a12] pb-24 pt-32 lg:pb-32 lg:pt-40">
+      <main id="main-content" tabIndex={-1} className="min-h-screen bg-[#080a12] pb-24 pt-32 lg:pb-32 lg:pt-40">
         <section aria-labelledby="intake-heading">
           <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16 lg:px-8">
             <div className="lg:sticky lg:top-28 lg:self-start">
@@ -51,6 +51,7 @@ export default function IntakePage() {
               >
                 <MessageCircle className="h-4 w-4" aria-hidden="true" />
                 Contact us on WhatsApp
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
 

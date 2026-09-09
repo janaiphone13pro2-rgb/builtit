@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { MotionProvider } from "@/components/ui/MotionProvider";
 import { organizationAndWebsiteSchema, siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -69,7 +70,7 @@ export default function RootLayout({
     <html lang="en" className={`${bebas.variable} ${dmSans.variable}`}>
       <body className="bg-background text-foreground font-dm antialiased">
         <JsonLd data={organizationAndWebsiteSchema} />
-        {children}
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );

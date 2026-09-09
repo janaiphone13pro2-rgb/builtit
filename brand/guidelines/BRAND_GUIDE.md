@@ -2,11 +2,11 @@
 
 ## Brand Essence
 
-**Tagline:** We Build Digital Presence That Converts.
+**Tagline:** Built around how you work. Yours when it ships.
 
-**Mission:** Help Egyptian businesses and students establish professional digital presence without subscriptions or templates — just craft.
+**Mission:** Build websites, commerce experiences, and operational systems around the way a business actually works, with a clear scope and handover.
 
-**Personality:** Bold, focused, fast, local, professional.
+**Personality:** Direct, precise, capable, local, and ownership-minded.
 
 ---
 
@@ -15,9 +15,7 @@
 ### Primary Logo
 The BuiltIt logo consists of the wordmark "BuiltIt." with the "It." portion highlighted in mint green.
 
-**Double L Meaning:** The double L represents building blocks — layers of work stacking together.
-
-**Mint "It.":** The highlighted "It." emphasizes that we build *it* — whatever digital presence you need.
+**Mint "It.":** The highlighted "It." completes the promise: we build *it*. The period acts as a completion mark and recurring live-status node across the wider identity.
 
 ### Logo Versions
 
@@ -43,8 +41,8 @@ Maintain minimum clear space around the logo equal to the height of the period/d
 
 | Color | Hex | RGB | Usage |
 |-------|-----|-----|-------|
-| **Background** | `#0A0A0A` | rgb(10, 10, 10) | Page backgrounds, dark UI |
-| **Foreground** | `#FFFFFF` | rgb(255, 255, 255) | Text, icons |
+| **Background** | `#05070A` | rgb(5, 7, 10) | Page backgrounds, drafting canvas |
+| **Foreground** | `#F7FAF8` | rgb(247, 250, 248) | Text, icons |
 | **Mint** | `#4EF2AD` | rgb(78, 242, 173) | Primary accent, CTAs, highlights |
 | **Mint Glow** | `rgba(78,242,173,0.18)` | rgba(78, 242, 173, 0.18) | Soft highlights and hover states |
 
@@ -52,9 +50,9 @@ Maintain minimum clear space around the logo equal to the height of the period/d
 
 | Color | Hex | Usage |
 |-------|-----|-------|
-| **Card BG** | `rgba(255,255,255,0.03)` | Card backgrounds |
-| **Border** | `rgba(255,255,255,0.08)` | Subtle borders |
-| **Muted** | `rgba(255,255,255,0.6)` | Secondary text |
+| **Card BG** | `rgba(255,255,255,0.035)` | Module backgrounds |
+| **Border** | `rgba(255,255,255,0.10)` | Assembly lines and borders |
+| **Muted** | `rgba(247,250,248,0.64)` | Secondary text |
 | **Mint 10%** | `rgba(78,242,173,0.1)` | Icon backgrounds |
 
 ### Color Usage Rules
@@ -73,7 +71,7 @@ Maintain minimum clear space around the logo equal to the height of the period/d
 - **Font:** Bebas Neue (Google Fonts)
 - **Weight:** 400 (regular)
 - **Case:** UPPERCASE
-- **Tracking:** Wide letter-spacing (0.05em)
+- **Tracking:** Compact display letter-spacing (0.025em)
 - **Sizes:**
   - Hero: 96px / 6rem
   - H1: 72px / 4.5rem
@@ -104,9 +102,17 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 
 ## Visual Language
 
+### Signature system
+
+- A dark drafting canvas with a restrained square grid
+- Modular frames connected by thin assembly lines
+- The mint period as a status, completion, and ownership node
+- Numbered sections and mono metadata used only as navigation aids
+- Motion that shows a system assembling, connecting, or becoming ready
+
 ### Shapes
 
-- **Border Radius:** 4px (consistent across all UI elements)
+- **Border Radius:** 4px for primary frames and controls; circular geometry is reserved for status nodes and system hubs
 - **Cards:** 1px border with subtle transparency
 - **Icons:** Inside 12px padding containers
 
@@ -143,7 +149,7 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 
 ### Treatment
 
-- Overlay: gradient from transparent to `#0A0A0A` at bottom
+- Overlay: gradient from transparent to `#05070A` at bottom
 - Opacity: 80-90% for backgrounds
 - Hover: scale 1.05 with smooth transition
 
@@ -160,12 +166,13 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 - Radius: 4px
 - Hover: darken 10%
 
-**Secondary (Mint)**
-- Background: `#4EF2AD`
-- Text: black, uppercase, bold
+**Secondary (Outline)**
+- Background: transparent
+- Border: 1px `rgba(255,255,255,0.2)`
+- Text: white, uppercase, bold
 - Padding: 16px 32px
 - Radius: 4px
-- Hover: darken 10%
+- Hover: mint border and text
 
 **Ghost**
 - Border: 1px `rgba(255,255,255,0.2)`
@@ -182,7 +189,7 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 
 ### Inputs
 
-- Background: `#0A0A0A`
+- Background: `#05070A`
 - Border: 1px `rgba(255,255,255,0.08)`
 - Focus: mint border
 - Radius: 4px
@@ -194,19 +201,20 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 
 ### Principles
 
-1. **Purposeful** — every animation serves UX
-2. **Smooth** — ease-in-out curves, never jarring
-3. **Fast** — 200-500ms durations
-4. **Respectful** — reduced-motion support
+1. **Purposeful** — motion reveals structure, connection, or state
+2. **Smooth** — use a decisive ease-out curve, never a bounce for decoration
+3. **Layered** — build in the order: label, message, modules, connections, status
+4. **Quiet after arrival** — only status nodes keep a subtle pulse
+5. **Respectful** — reduced-motion support is mandatory
 
 ### Patterns
 
 | Animation | Duration | Easing |
 |-----------|----------|--------|
-| Fade Up | 700ms | ease-out |
-| Stagger | 100ms delay | ease-out |
+| Hero build-in | 550–850ms | ease-out |
+| Module stagger | 60–90ms delay | ease-out |
+| Connector draw | 850ms | ease-out |
 | Hover Scale | 300ms | ease-in-out |
-| Count Up | 1500ms | ease-out |
 | Page Transition | 300ms | ease-in-out |
 
 ---
@@ -223,8 +231,8 @@ Body: DM Sans, white/70% opacity, max-width 65ch
 ### We Say
 
 - "We build" — not "we create" or "we design"
-- "Digital presence" — not "websites" alone
-- "Converts" — focused on results
+- "Built around how you work" — start with the real workflow
+- "Clear scope" and "agreed handover" — make ownership concrete
 
 ### We Don't Say
 

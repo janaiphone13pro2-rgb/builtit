@@ -45,12 +45,13 @@ export function AnimatedText({
   return (
     <motion.span
       className={cn("inline-flex flex-wrap", className)}
+      aria-label={text}
       variants={container}
       initial="hidden"
       animate="visible"
     >
       {words.map((word, index) => (
-        <motion.span variants={child} className="mr-[0.25em]" key={index}>
+        <motion.span aria-hidden="true" variants={child} className="mr-[0.25em] inline-block" key={index}>
           {word}
         </motion.span>
       ))}

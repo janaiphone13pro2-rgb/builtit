@@ -1,11 +1,9 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { AnimatedText, FadeUp, StaggerContainer, StaggerItem } from "@/components/ui/AnimatedText";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { CountUp } from "@/components/ui/CountUp";
 import Link from "next/link";
 import {
   Globe,
@@ -64,21 +62,16 @@ const personas = [
 const steps = [
   { number: "01", title: "Fill Intake", description: "Share your background, projects, and career goals." },
   { number: "02", title: "Review", description: "We review your materials and suggest the best layout." },
-  { number: "03", title: "Build", description: "Your custom digital CV takes shape in 5–10 days." },
+  { number: "03", title: "Build", description: "Your digital CV takes shape through clear review stages." },
   { number: "04", title: "Launch", description: "Go live and share your new link with the world." },
 ];
 
 const faqs = [
-  { q: "How much does a student CV cost?", a: "Our student packages start at 3,500 EGP including domain for the first year. Payment plans available." },
-  { q: "Can I update it myself later?", a: "Yes. We use a simple CMS so you can add new projects or update your info anytime." },
-  { q: "Will it help me get hired?", a: "A professional digital CV makes you memorable. Many of our students report more interview callbacks." },
+  { q: "How much does a student CV cost?", a: "Pricing depends on the pages, content support, and features you need. We confirm the full quote and any external costs before work starts." },
+  { q: "Can I update it myself later?", a: "Yes, when content editing is included in the agreed scope. We can add a simple CMS and show you how to use it." },
+  { q: "Will it help me get hired?", a: "A clear digital CV can make your work easier to review and share, but no website can guarantee interviews or hiring outcomes." },
   { q: "Can I use it for grad school applications?", a: "Absolutely. It works great for academic and professional applications alike." },
   { q: "What if I don't have many projects yet?", a: "We help you present coursework, internships, and skills effectively even with limited experience." },
-];
-
-const stats = [
-  { value: 10, suffix: "+", label: "Student CVs Built" },
-  { value: 80, suffix: "%", label: "Got Interviews" },
 ];
 
 export default function StudentsServicePage() {
@@ -86,15 +79,14 @@ export default function StudentsServicePage() {
     <>
       <JsonLd data={serviceSchema} />
       <JsonLd data={breadcrumbSchema} />
-      <CustomCursor />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero */}
-        <section className="pt-32 pb-20 lg:pt-40 lg:pb-32">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <section className="blueprint-grid relative overflow-hidden border-b border-white/10 bg-[#05070a] pb-20 pt-32 lg:pb-28 lg:pt-40">
+          <div className="site-shell relative">
             <div className="max-w-3xl">
               <AnimatedText text="STUDENT DIGITAL CV" className="text-sm font-medium tracking-[0.2em] text-lime block mb-4" />
-              <h1 className="font-bebas text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wide mb-6">
+              <h1 className="display-heading mb-6 text-6xl text-white md:text-7xl lg:text-8xl">
                 A Link You&apos;re<br />
                 <span className="text-white/50">Proud to Share.</span>
               </h1>
@@ -102,27 +94,11 @@ export default function StudentsServicePage() {
                 Your work, your story, online. A professional digital CV that helps you stand out when applying for jobs or internships.
               </p>
               <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
+                <Link href="/intake" className="primary-cta group">
                   Start This Project
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </MagneticButton>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="py-16 border-y border-white/[0.08]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="grid grid-cols-2 gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-bebas text-5xl md:text-6xl text-lime mb-2">
-                    <CountUp end={stat.value} suffix={stat.suffix} duration={2} />
-                  </div>
-                  <p className="text-sm text-white/60 uppercase tracking-wide">{stat.label}</p>
-                </div>
-              ))}
             </div>
           </div>
         </section>
@@ -170,7 +146,7 @@ export default function StudentsServicePage() {
             <StaggerContainer className="grid md:grid-cols-3 gap-6" staggerDelay={0.15}>
               {personas.map((persona) => (
                 <StaggerItem key={persona.title}>
-                  <div className="p-6 bg-card border border-[#ffffff15] rounded">
+                  <div className="h-full p-6 bg-card border border-[#ffffff15] rounded">
                     <h3 className="font-bebas text-3xl tracking-wide mb-3">{persona.title}</h3>
                     <p className="text-sm text-white/60">{persona.description}</p>
                   </div>
@@ -247,12 +223,12 @@ export default function StudentsServicePage() {
             </FadeUp>
             <FadeUp delay={0.1}>
               <p className="text-lg text-white/70 mb-8 max-w-xl mx-auto">
-                Let&apos;s build a digital CV that gets you noticed.
+                Let&apos;s build a digital CV that presents your work with clarity.
               </p>
             </FadeUp>
             <FadeUp delay={0.2}>
               <MagneticButton>
-                <Link href="/intake" className="inline-flex items-center gap-2 px-8 py-4 bg-lime text-black font-bold uppercase tracking-wide rounded hover:bg-lime/90 transition-colors">
+                <Link href="/intake" className="primary-cta group">
                   Build Your CV
                   <ArrowRight className="w-5 h-5" />
                 </Link>

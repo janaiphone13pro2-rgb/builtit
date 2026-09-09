@@ -44,7 +44,7 @@ const initialValues: FormValues = {
 };
 
 const inputClassName =
-  "min-h-12 w-full rounded-md border border-white/20 bg-[#090c12] px-4 text-base text-white outline-none transition placeholder:text-white/45 hover:border-white/35 focus-visible:border-lime focus-visible:ring-2 focus-visible:ring-lime/25 disabled:cursor-not-allowed disabled:opacity-50";
+  "min-h-12 w-full rounded-sm border border-white/15 bg-[#070b0e] px-4 text-base text-white outline-none transition placeholder:text-white/[0.38] hover:border-white/30 focus-visible:border-lime focus-visible:ring-2 focus-visible:ring-lime/20 disabled:cursor-not-allowed disabled:opacity-50";
 
 function localDateKey(date: Date) {
   const year = date.getFullYear();
@@ -215,8 +215,16 @@ export function ProjectEnquiryForm({ endpoint = "/api/contact" }: ProjectEnquiry
       action={endpoint}
       onSubmit={handleSubmit}
       aria-busy={status === "submitting"}
-      className="relative rounded-lg border border-white/15 bg-white/[0.035] p-5 sm:p-7 lg:p-8"
+      aria-label="Project build request"
+      className="build-frame relative bg-[#0a0f12]/95 p-5 shadow-[0_28px_80px_rgba(0,0,0,0.28)] sm:p-7 lg:p-8"
     >
+      <div className="mb-7 flex flex-col gap-2 border-b border-white/10 pb-5 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="font-mono text-[0.67rem] font-bold uppercase tracking-[0.15em] text-lime">Project brief / 01</p>
+          <h3 className="display-heading mt-2 text-3xl text-white">Build request</h3>
+        </div>
+        <p className="text-xs text-white/40">Fields marked * are required</p>
+      </div>
       <div className="grid gap-5 md:grid-cols-2">
         <Field label="Full name" field="fullName" error={errors.fullName} required id={id}>
           <input
@@ -395,7 +403,7 @@ export function ProjectEnquiryForm({ endpoint = "/api/contact" }: ProjectEnquiry
               });
               setStatus("idle");
             }}
-            className="h-5 w-5 rounded border-white/30 bg-[#090c12] text-lime accent-[#b7ff00] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
+            className="h-5 w-5 rounded-sm border-white/30 bg-[#090c12] text-lime accent-[#4ef2ad] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime"
           />
           I&apos;m not sure yet
         </label>
@@ -497,7 +505,7 @@ export function ProjectEnquiryForm({ endpoint = "/api/contact" }: ProjectEnquiry
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-lime px-6 py-3 text-sm font-black uppercase tracking-wide text-slate-950 transition hover:bg-lime/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-[#090c12] disabled:cursor-wait disabled:opacity-60 sm:w-auto"
+        className="primary-cta mt-6 w-full disabled:cursor-wait disabled:opacity-60 sm:w-auto"
       >
         {status === "submitting" ? (
           <>

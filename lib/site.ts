@@ -4,9 +4,9 @@ export const siteConfig = {
   name: "BuiltIt",
   url: "https://www.builtit.net",
   email: "hello@builtit.net",
-  title: "BuiltIt | Custom Software & Business Systems",
+  title: "BuiltIt | Digital Systems You Own",
   description:
-    "BuiltIt designs and develops websites, e-commerce platforms, web applications, mobile applications, and custom business systems with full source-code handover.",
+    "BuiltIt is a Cairo software studio building websites, commerce experiences, applications, and operational systems with a clear scope and handover.",
 } as const;
 
 type PageMetadataOptions = {

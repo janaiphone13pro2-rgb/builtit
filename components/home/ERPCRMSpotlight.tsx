@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   AlertTriangle,
   ArrowRight,
@@ -97,7 +98,7 @@ function StatusPill({ children, tone = "green" }: { children: React.ReactNode; t
 
 function DashboardShell({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div
+    <figure
       className="overflow-hidden rounded-xl border border-white/10 bg-[#080b11] shadow-[0_28px_80px_rgba(0,0,0,0.35)]"
       aria-label={`${label} illustrative dashboard`}
     >
@@ -107,22 +108,22 @@ function DashboardShell({ label, children }: { label: string; children: React.Re
             B
           </div>
           <div className="min-w-0">
-            <p className="truncate text-xs text-white/45">BuiltIt Workspace</p>
+            <p className="truncate text-xs text-white/45">BuiltIt Demo Workspace</p>
             <p className="truncate text-sm font-bold text-white">{label}</p>
           </div>
         </div>
         <div className="flex shrink-0 items-center gap-2 text-xs text-white/55">
           <span className="h-2 w-2 rounded-full bg-lime" aria-hidden="true" />
-          <span className="hidden sm:inline">Live workspace</span>
+          <span className="hidden sm:inline">Sample data</span>
           <Bell className="ml-1 h-4 w-4 text-white/45" aria-hidden="true" />
         </div>
       </div>
       <div className="p-3 sm:p-5">{children}</div>
       <div className="flex items-center justify-between gap-4 border-t border-white/10 px-4 py-3 text-[11px] text-white/40 sm:px-5">
         <span>Illustrative capability interface</span>
-        <span>Configured around your workflow</span>
+        <span>Sample data · configured around your workflow</span>
       </div>
-    </div>
+    </figure>
   );
 }
 
@@ -675,17 +676,15 @@ export function ERPCRMSpotlight() {
   }
 
   return (
-    <section id="erp" aria-labelledby="systems-showcase-title" className="relative overflow-hidden bg-background py-20 sm:py-24 lg:py-32">
+    <section id="erp" aria-labelledby="systems-showcase-title" className="scroll-mt-20 relative overflow-hidden bg-background section-space">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(78,242,173,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(78,242,173,0.045)_1px,transparent_1px)] bg-[size:72px_72px]" aria-hidden="true" />
       <div className="pointer-events-none absolute left-1/2 top-16 h-64 w-64 -translate-x-1/2 rounded-full bg-lime/[0.06] blur-3xl" aria-hidden="true" />
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          <p className="font-mono text-sm font-semibold uppercase tracking-[0.2em] text-lime">
-            Connected Business Software
-          </p>
-          <h2 id="systems-showcase-title" className="mt-4 text-balance text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Every Business Module. Connected in One System.
+          <p className="section-kicker">05 / Connected business software</p>
+          <h2 id="systems-showcase-title" className="display-heading mt-4 text-5xl text-white sm:text-6xl lg:text-7xl">
+            Every module. One clear system<span className="text-lime">.</span>
           </h2>
           <p className="mt-6 max-w-2xl text-base leading-7 text-white/70 sm:text-lg sm:leading-8">
             Instead of switching between scattered applications, bring the information that matters into one tailored platform. Select a module to explore what BuiltIt can create around your workflow.
@@ -696,7 +695,7 @@ export function ERPCRMSpotlight() {
           </p>
         </div>
 
-        <div className="mt-10 overflow-hidden rounded-2xl border border-white/10 bg-[#070a10]/95 shadow-[0_32px_100px_rgba(0,0,0,0.42)] lg:mt-14 lg:grid lg:grid-cols-[270px_minmax(0,1fr)]">
+        <div className="build-frame mt-10 overflow-hidden bg-[#070a10]/95 shadow-[0_32px_100px_rgba(0,0,0,0.42)] lg:mt-14 lg:grid lg:grid-cols-[270px_minmax(0,1fr)]">
           <div className="border-b border-white/10 bg-white/[0.018] p-3 lg:border-b-0 lg:border-r lg:p-4">
             <div className="mb-3 hidden items-center justify-between px-3 lg:flex">
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">System modules</span>
@@ -705,7 +704,7 @@ export function ERPCRMSpotlight() {
             <div
               role="tablist"
               aria-label="Business system modules"
-              className="flex gap-2 overflow-x-auto pb-1 lg:grid lg:overflow-visible lg:pb-0"
+              className="flex snap-x snap-mandatory gap-2 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:overflow-visible lg:pb-0"
             >
               {systemModules.map((module, index) => {
                 const isActive = module.id === activeModule.id;
@@ -723,7 +722,7 @@ export function ERPCRMSpotlight() {
                     tabIndex={isActive ? 0 : -1}
                     onClick={() => setActiveId(module.id)}
                     onKeyDown={(event) => handleTabKeyDown(event, index)}
-                    className={`group flex min-h-14 min-w-[190px] items-center gap-3 rounded-lg border px-3 py-3 text-left transition-colors focus-visible:z-10 lg:min-w-0 ${
+                    className={`group flex min-h-14 min-w-[190px] snap-start items-center gap-3 rounded-sm border px-3 py-3 text-left transition-colors focus-visible:z-10 lg:min-w-0 ${
                       isActive
                         ? "border-lime/35 bg-lime/[0.11] text-white"
                         : "border-transparent text-white/55 hover:border-white/10 hover:bg-white/[0.035] hover:text-white"
@@ -740,12 +739,17 @@ export function ERPCRMSpotlight() {
             </div>
           </div>
 
-          <div
+          <AnimatePresence mode="wait" initial={false}>
+          <motion.div
             key={activeModule.id}
             id={`system-panel-${activeModule.id}`}
             role="tabpanel"
             aria-labelledby={`system-tab-${activeModule.id}`}
             tabIndex={0}
+            initial={{ opacity: 0, x: 14 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -8 }}
+            transition={{ duration: 0.22 }}
             className="min-w-0 p-4 focus-visible:outline-offset-[-3px] sm:p-6 lg:p-8"
           >
             <div className="grid items-start gap-7 xl:grid-cols-[minmax(230px,0.58fr)_minmax(0,1.42fr)] xl:gap-8">
@@ -771,7 +775,8 @@ export function ERPCRMSpotlight() {
                 <ModuleDashboard moduleId={activeModule.id} />
               </div>
             </div>
-          </div>
+          </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
