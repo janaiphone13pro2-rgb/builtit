@@ -8,6 +8,7 @@ import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { ProcessTimeline } from "@/components/home/ProcessTimeline";
 import { ERPCRMSpotlight } from "@/components/home/ERPCRMSpotlight";
 import { ImpactNumbers } from "@/components/home/ImpactNumbers";
+import { Testimonials } from "@/components/home/Testimonials";
 import { BookingContact } from "@/components/home/BookingContact";
 import { WhatsAppFloatingButton } from "@/components/ui/WhatsAppFloatingButton";
 
@@ -24,6 +25,7 @@ export default function HomePage() {
         <ERPCRMSpotlight />
         <ProcessTimeline />
         <ImpactNumbers />
+        <Testimonials />
         <BookingContact />
       </main>
       <Footer />

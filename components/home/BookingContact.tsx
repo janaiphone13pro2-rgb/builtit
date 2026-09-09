@@ -15,7 +15,7 @@ export function BookingContact() {
 
       <div className="site-shell relative grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="section-kicker">08 / Start the build</p>
+          <p className="section-kicker">09 / Start the build</p>
           <h2 id="contact-heading" className="display-heading mt-4 text-5xl text-white sm:text-6xl lg:text-7xl">
             Tell us what needs to work better<span className="text-lime">.</span>
           </h2>

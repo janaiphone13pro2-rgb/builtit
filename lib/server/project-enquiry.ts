@@ -163,6 +163,28 @@ function deliveryEmail(data: ContactFormData, source: EnquirySource) {
   `;
 }
 
+function deliveryText(data: ContactFormData, source: EnquirySource) {
+  const sourceLabel = source === "homepage" ? "Homepage contact form" : "Project intake page";
+
+  return [
+    "New BuiltIt project request",
+    "",
+    `Name: ${data.fullName}`,
+    `Work email: ${data.workEmail}`,
+    `Phone / WhatsApp: ${data.phone}`,
+    `Company: ${data.company}`,
+    `Project type: ${data.projectType}`,
+    `Estimated budget: ${budgetLabel(data)}`,
+    `Preferred launch date: ${data.preferredLaunchDate}`,
+    `Submitted from: ${sourceLabel}`,
+    "",
+    "Project details:",
+    data.projectDetails,
+    "",
+    "No meeting has been reserved. Arrange a real available time after qualification if needed.",
+  ].join("\n");
+}
+
 export async function handleProjectEnquiry(request: Request, source: EnquirySource) {
   if (isCrossSiteRequest(request)) {
     return json({ error: "Request not allowed" }, 403);
@@ -214,14 +236,15 @@ export async function handleProjectEnquiry(request: Request, source: EnquirySour
 
   try {
     const resend = new Resend(apiKey);
-    const toEmail = process.env.INTAKE_EMAIL || "jana4tamam@gmail.com";
+    const enquiryRecipient = process.env.INTAKE_EMAIL || "jana4tamam@gmail.com";
     const data = result.data;
     const response = await resend.emails.send({
       from: "BuiltIt Enquiries <intake@builtit.net>",
-      to: [toEmail],
+      to: [enquiryRecipient],
       subject: `New BuiltIt project request: ${safeSubject(data.fullName)} — ${data.projectType}`,
       reply_to: data.workEmail,
       html: deliveryEmail(data, source),
+      text: deliveryText(data, source),
     });
 
     if (response.error) {

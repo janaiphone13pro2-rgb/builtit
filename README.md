@@ -58,7 +58,7 @@ cp .env.local.example .env.local
 
 Edit `.env.local` with your values:
 - `RESEND_API_KEY` - Your Resend API key for email notifications
-- `INTAKE_EMAIL` - Email address to receive intake form submissions
+- `INTAKE_EMAIL` - Receiving address for form submissions (set to `jana4tamam@gmail.com`)
 
 4. Run the development server:
 ```bash

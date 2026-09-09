@@ -196,6 +196,28 @@
     animation: grain 8s steps(10) infinite;
   }
 
+  .logo-marquee-track {
+    width: max-content;
+  }
+
+  .logo-marquee {
+    scrollbar-width: none;
+  }
+
+  .logo-marquee::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .logo-marquee-track {
+      animation: logoMarquee 28s linear infinite;
+    }
+  }
+
+  .logo-marquee:hover .logo-marquee-track {
+    animation-play-state: paused;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -212,6 +234,14 @@
 
     .grain-overlay {
       animation: none;
+    }
+
+    .logo-marquee-track {
+      animation: none;
+    }
+
+    .logo-marquee {
+      overflow-x: auto !important;
     }
 
     .primary-cta:hover,
@@ -246,6 +276,11 @@
   70% { transform: translate(0%, 15%); }
   80% { transform: translate(3%, 35%); }
   90% { transform: translate(-10%, 10%); }
+}
+
+@keyframes logoMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @keyframes statusPulse {
